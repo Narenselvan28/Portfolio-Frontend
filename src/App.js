@@ -1,24 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Projects from './pages/Projects';
+import Leadership from './pages/Leadership';
+import Participations from './pages/Participations';
+import Certifications from './pages/Certifications';
+import Academics from './pages/Academics';
+import AdminLogin from './admin/Login';
+import AdminDashboard from './admin/Dashboard';
+import ProtectedRoute from './components/ProtectedRoute';
+
+function AppContent() {
+  const location = useLocation();
+  const isAdminPath = location.pathname.startsWith('/admin');
+
+  return (
+    <div className="min-h-screen">
+      {!isAdminPath && <Navbar />}
+      <main className={!isAdminPath ? "container mx-auto py-8" : ""}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/leadership" element={<Leadership />} />
+          <Route path="/participations" element={<Participations />} />
+          <Route path="/certifications" element={<Certifications />} />
+          <Route path="/academics" element={<Academics />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route 
+            path="/admin/dashboard/*" 
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            } 
+          />
+        </Routes>
+      </main>
+    </div>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <AppContent />
+    </Router>
   );
 }
 
