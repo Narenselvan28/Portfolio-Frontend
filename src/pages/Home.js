@@ -67,7 +67,7 @@ const Home = () => {
         transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
         className="w-10 h-10 border-2 border-gray-100 border-t-black rounded-full"
       />
-      <p className="mt-4 text-[10px] text-gray-400 font-mono tracking-wider">Syncing Presence...</p>
+      <p className="mt-4 text-[10px] text-gray-400 font-mono tracking-wider">Loading...</p>
     </div>
   );
 
@@ -154,7 +154,7 @@ const Home = () => {
               <div className="flex items-center justify-between gap-4">
                 <motion.h1 
                   variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
-                  className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-medium text-black leading-[1.1] md:leading-[0.9] tracking-tightest flex-1"
+                  className="text-6xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-medium text-black leading-[1.1] md:leading-[0.9] tracking-tightest flex-1"
                 >
                   Naren
                   <br />
