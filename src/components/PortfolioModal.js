@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, CheckCircle2 } from 'lucide-react';
 import api from '../api';
@@ -12,6 +12,14 @@ const PortfolioModal = ({ isOpen, onClose }) => {
     message: ''
   });
   const [status, setStatus] = useState('idle'); // idle, sending, success, error
+
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    if (isOpen) window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [isOpen, onClose]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,24 +46,34 @@ const PortfolioModal = ({ isOpen, onClose }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/80 backdrop-blur-md"
           />
           
           <motion.div 
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-lg bg-white rounded-[2.5rem] shadow-2xl overflow-hidden"
+            className="relative w-full max-w-lg bg-white rounded-[3rem] shadow-2xl overflow-hidden"
           >
-            <div className="p-10 space-y-8">
-              <div className="flex justify-between items-start">
-                <div className="space-y-2">
-                  <h2 className="text-3xl font-display font-medium text-black tracking-tight">Build with Naren</h2>
-                  <p className="text-gray-500 text-sm">Initiate your professional portfolio architecture.</p>
+            <div className="absolute top-8 right-8 z-10">
+              <button 
+                onClick={onClose} 
+                className="group p-3 bg-gray-50 hover:bg-black rounded-full transition-all duration-300 shadow-sm"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5 text-gray-400 group-hover:text-white group-hover:rotate-90 transition-all duration-300" />
+              </button>
+            </div>
+
+            <div className="p-12 space-y-10">
+              <div className="space-y-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-black text-[9px] text-white uppercase tracking-[0.2em] font-bold rounded-full">
+                  Collaboration Hub
                 </div>
-                <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                  <X className="w-6 h-6 text-gray-400" />
-                </button>
+                <div className="space-y-2">
+                  <h2 className="text-4xl font-display font-medium text-black tracking-tighter leading-tight">Build with Naren</h2>
+                  <p className="text-gray-500 text-sm font-light">Initiate your professional portfolio architecture.</p>
+                </div>
               </div>
 
               {status === 'success' ? (

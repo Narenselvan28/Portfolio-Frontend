@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Layers, ArrowUpRight, Sparkles, Clock } from 'lucide-react';
+import { Layers, ArrowUpRight, Sparkles, Clock, X } from 'lucide-react';
 import api from '../api';
 
 const Badge = ({ children, variant = 'default' }) => {
@@ -99,6 +99,20 @@ const ProjectCard = ({ project, isFeatured, idx, onClick }) => {
 };
 
 const ProjectModal = ({ project, onClose }) => {
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    if (project) {
+      window.addEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'auto';
+    };
+  }, [project, onClose]);
+
   if (!project) return null;
 
   const sections = [
@@ -112,21 +126,25 @@ const ProjectModal = ({ project, onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-black/5 backdrop-blur-xl"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-black/50 backdrop-blur-2xl"
+      onClick={onClose}
     >
       <motion.div 
-        initial={{ scale: 0.95, opacity: 0, y: 20 }}
+        initial={{ scale: 0.95, opacity: 0, y: 30 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{ scale: 0.95, opacity: 0, y: 20 }}
-        transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto border border-gray-100 shadow-2xl rounded-[3rem] relative"
+        exit={{ scale: 0.95, opacity: 0, y: 30 }}
+        transition={{ type: "spring", damping: 25, stiffness: 200 }}
+        onClick={(e) => e.stopPropagation()}
+        className="bg-white w-full max-w-6xl max-h-[90vh] overflow-y-auto border border-gray-100 shadow-2xl rounded-[3.5rem] relative"
       >
-        <button 
-          onClick={onClose}
-          className="absolute top-10 right-10 z-30 p-3 hover:bg-gray-50 rounded-full transition-colors"
-        >
-          <Clock className="w-5 h-5 text-gray-400 rotate-45" />
-        </button>
+        <div className="absolute top-10 right-10 z-[110]">
+          <button 
+            onClick={onClose}
+            className="group p-4 bg-gray-50 hover:bg-black rounded-full transition-all duration-300 shadow-sm"
+          >
+            <X className="w-5 h-5 text-gray-400 group-hover:text-white group-hover:rotate-90 transition-all duration-300" />
+          </button>
+        </div>
 
         <div className="p-10 md:p-20 space-y-20">
           {/* Header */}

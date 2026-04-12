@@ -35,8 +35,8 @@ const DashboardHome = () => (
   <div className="space-y-12">
     <div className="flex items-end justify-between">
       <div className="space-y-2">
-        <h2 className="text-4xl font-display font-medium text-white tracking-tight">System Overview</h2>
-        <p className="text-gray-300 text-sm font-light">Real-time status of your digital architecture.</p>
+        <h2 className="text-4xl font-display font-medium text-white tracking-tight">Admin Home</h2>
+        <p className="text-gray-300 text-sm font-light">Quick summary of your portfolio content.</p>
       </div>
       <div className="flex gap-4">
         <div className="px-6 py-3 bg-white/[0.05] border border-white/[0.1] rounded-2xl">
@@ -79,9 +79,9 @@ const DashboardHome = () => (
         <Database className="w-64 h-64 text-white" />
       </div>
       <div className="max-w-xl space-y-6 relative z-10">
-        <h3 className="text-2xl font-medium text-white">Cloudinary Nexus</h3>
+        <h3 className="text-2xl font-medium text-white">Media Library</h3>
         <p className="text-gray-300 leading-relaxed font-light">
-          Your media storage is successfully synchronized. All high-resolution assets are being served through the global CDN with optimized transformations.
+          Your photos and documents are safely stored in the cloud. You can manage them here to speed up your website.
         </p>
         <button className="px-8 py-3 bg-white text-black text-sm font-medium rounded-xl hover:bg-gray-200 transition-colors">
           Manage Assets
@@ -101,13 +101,13 @@ const AdminDashboard = () => {
   };
 
   const navItems = [
-    { icon: LayoutDashboard, label: 'Dashboard', to: '/admin/dashboard' },
-    { icon: MessageSquare, label: 'Messages', to: '/admin/dashboard/messages' },
+    { icon: LayoutDashboard, label: 'Home', to: '/admin/dashboard' },
+    { icon: MessageSquare, label: 'Messages & Leads', to: '/admin/dashboard/messages' },
     { icon: FolderKanban, label: 'Projects', to: '/admin/dashboard/projects' },
-    { icon: Award, label: 'Certifications', to: '/admin/dashboard/certifications' },
-    { icon: GraduationCap, label: 'Academics', to: '/admin/dashboard/academics' },
+    { icon: Award, label: 'Certificates', to: '/admin/dashboard/certifications' },
+    { icon: GraduationCap, label: 'Education', to: '/admin/dashboard/academics' },
     { icon: Users, label: 'Participations', to: '/admin/dashboard/participations' },
-    { icon: Calendar, label: 'Events', to: '/admin/dashboard/events' },
+    { icon: Calendar, label: 'Activities', to: '/admin/dashboard/events' },
   ];
 
   return (
@@ -120,7 +120,7 @@ const AdminDashboard = () => {
           </div>
           <div>
             <h1 className="text-lg font-medium leading-tight">Naren Selvan</h1>
-            <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Terminal Admin</p>
+            <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Admin Console</p>
           </div>
         </div>
 
