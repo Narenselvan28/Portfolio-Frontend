@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Layers, ArrowUpRight, Sparkles, Clock, X } from 'lucide-react';
+import { Layers, ArrowUpRight, Sparkles, X } from 'lucide-react';
 import api from '../api';
 
 const Badge = ({ children, variant = 'default' }) => {

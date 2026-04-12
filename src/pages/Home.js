@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  ArrowUpRight, Code, User, Activity, Terminal, Globe, 
-  Sparkles, Layers, Briefcase, ChevronRight, GraduationCap,
-  Cpu, Zap, Eye, MousePointer, Compass, Circle, Square,
-  Hexagon, Star, Award, Coffee, Feather, Grid, Box,
-  Move, RotateCw, Focus
+  ArrowUpRight, Code, User, Activity, Globe, 
+  Sparkles, Layers, ChevronRight, GraduationCap,
+  Cpu, Zap, Compass, Star, Award, Coffee, 
+  Feather, Grid, Box, Focus
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import api from '../api';

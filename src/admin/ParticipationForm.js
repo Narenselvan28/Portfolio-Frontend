@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api';
 import { motion } from 'framer-motion';
-import { Users, Trash2, Plus, Save, Calendar, MapPin } from 'lucide-react';
+import { Trash2, Save, MapPin } from 'lucide-react';
 
 const ParticipationForm = () => {
   const [participations, setParticipations] = useState([]);

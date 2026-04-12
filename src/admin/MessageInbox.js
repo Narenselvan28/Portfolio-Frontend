@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Trash2, Calendar, Phone, MessageSquare, Clock } from 'lucide-react';
+import { Mail, Trash2, Phone, MessageSquare } from 'lucide-react';
 
 const MessageInbox = () => {
   const [messages, setMessages] = useState([]);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api';
 import { motion } from 'framer-motion';
-import { GraduationCap, Trash2, Plus, Save, Image as ImageIcon } from 'lucide-react';
+import { GraduationCap, Trash2, Save } from 'lucide-react';
 
 const AcademicForm = () => {
   const [academics, setAcademics] = useState([]);
@@ -12,7 +12,6 @@ const AcademicForm = () => {
   });
   const [editingId, setEditingId] = useState(null);
   const [activeTab, setActiveTab] = useState('list');
-  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     fetchAcademics();
@@ -21,22 +20,6 @@ const AcademicForm = () => {
   const fetchAcademics = async () => {
     const { data } = await api.get('/academics');
     setAcademics(data);
-  };
-
-  const handleFileUpload = async (e) => {
-    const files = Array.from(e.target.files);
-    if (files.length === 0) return;
-    setUploading(true);
-    const uploadData = new FormData();
-    files.forEach(file => uploadData.append('images', file));
-    try {
-      const { data } = await api.post('/upload', uploadData);
-      setFormData(prev => ({ ...prev, documents: [...prev.documents, ...data.urls] }));
-    } catch (err) {
-      console.error('Upload failed');
-    } finally {
-      setUploading(false);
-    }
   };
 
   const handleSubmit = async (e) => {

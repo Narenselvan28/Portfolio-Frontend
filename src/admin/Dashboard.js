@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import { 
   LayoutDashboard, FolderKanban, Award, GraduationCap, 
-  Users, Calendar, UserCircle, LogOut, ChevronRight,
-  Plus, Database, ExternalLink, MessageSquare
+  Users, Calendar, UserCircle, LogOut, Database, ExternalLink, MessageSquare
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 

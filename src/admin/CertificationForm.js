@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Award, Trash2, Plus, Save, Calendar, ExternalLink } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Award, Trash2, Save, Calendar } from 'lucide-react';
 
 const CertificationForm = () => {
   const [certs, setCerts] = useState([]);

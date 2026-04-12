@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GraduationCap, ChevronRight, Book, Clock } from 'lucide-react';
+import { GraduationCap, ChevronRight, Book } from 'lucide-react';
 import api from '../api';
 
 const AcademicModal = ({ academic, onClose }) => {
