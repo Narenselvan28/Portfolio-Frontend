@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   ArrowUpRight, Code, User, Activity, Globe, 
-  Sparkles, Layers, ChevronRight, GraduationCap,
-  Cpu, Zap, Compass, Star, Award, Coffee, 
-  Feather, Grid, Box, Focus
+  Sparkles, ChevronRight, GraduationCap,
+  Cpu, Zap, Award, Coffee, 
+  Feather, Grid
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import api from '../api';
