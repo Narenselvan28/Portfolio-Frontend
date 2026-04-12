@@ -22,7 +22,7 @@
   }
 
   body {
-    @apply bg-white text-black min-h-screen antialiased selection:bg-black selection:text-white font-body;
+    @apply bg-white text-black min-h-screen antialiased selection:bg-black selection:text-white font-body overflow-x-hidden;
     font-size: clamp(0.875rem, 0.8rem + 0.25vw, 1rem);
   }
 
@@ -30,37 +30,50 @@
     @apply font-display tracking-tighter text-black;
   }
 
-  h1 { font-size: clamp(3.5rem, 10vw + 1rem, 7rem); @apply font-medium leading-[0.9] tracking-tightest; }
-  h2 { font-size: clamp(2rem, 5vw + 1rem, 3.5rem); @apply font-medium leading-[1.1] tracking-tighter; }
-  h3 { font-size: clamp(1.25rem, 2vw + 0.5rem, 1.5rem); @apply font-medium tracking-tight; }
+  h1 { font-size: clamp(2.5rem, 10vw + 0.5rem, 7rem); @apply font-medium leading-[0.95] tracking-tightest; }
+  h2 { font-size: clamp(1.8rem, 5vw + 0.5rem, 3.5rem); @apply font-medium leading-[1.1] tracking-tighter; }
+  h3 { font-size: clamp(1.2rem, 2vw + 0.5rem, 1.5rem); @apply font-medium tracking-tight; }
 
   p { @apply leading-relaxed font-body text-gray-500; }
 
+  /* Mobile breakpoints */
+  @media (max-width: 768px) {
+    .container { padding-left: 1rem; padding-right: 1rem; }
+    h1 { font-size: clamp(2.5rem, 8vw + 0.5rem, 3.5rem); line-height: 1.1; }
+    h2 { font-size: clamp(1.8rem, 6vw + 0.5rem, 2.8rem); line-height: 1.1; }
+    .premium-card { border-radius: 1.5rem; }
+  }
 
+  /* Touch-friendly optimizations */
+  .tap-highlight { -webkit-tap-highlight-color: transparent; }
+  button, a { cursor: pointer; touch-action: manipulation; }
+
+  /* Smooth scrolling with performance focus */
+  html { scroll-behavior: smooth; }
+
+  /* Reduced motion for performance and accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { 
+        animation-duration: 0.01ms !important; 
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+  }
 }
 
 @layer components {
   /* Fluid typography utilities */
-  .text-fluid-h1 { font-size: clamp(3.5rem, 10vw + 1rem, 7rem); }
-  .text-fluid-h2 { font-size: clamp(2.5rem, 5vw + 1rem, 3.5rem); }
+  .text-fluid-h1 { font-size: clamp(2.5rem, 10vw + 0.5rem, 7rem); }
+  .text-fluid-h2 { font-size: clamp(1.8rem, 5vw + 0.5rem, 3.5rem); }
   
-  /* Reduced motion support */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-  }
-
   /* Custom navigation link styles */
   .nav-link {
-    @apply text-[10px] tracking-[0.2em] uppercase transition-colors relative font-mono;
+    @apply text-[10px] tracking-[0.15em] uppercase transition-colors relative font-mono;
   }
 
   .glass-header {
-    @apply fixed top-0 left-0 right-0 z-[100] px-6 pt-6 transition-all duration-500;
+    @apply fixed top-0 left-0 right-0 z-[100] px-4 md:px-6 pt-4 md:pt-6 transition-all duration-500;
   }
 
   .premium-card {
@@ -73,3 +86,6 @@
 .tracking-tighter { letter-spacing: -0.02em; }
 .tracking-tight { letter-spacing: -0.01em; }
 .uppercaseAlpha { font-feature-settings: 'case' on, 'ss01' on; }
+
+/* Scroll Lock Utility */
+.overflow-hidden { overflow: hidden !important; }
