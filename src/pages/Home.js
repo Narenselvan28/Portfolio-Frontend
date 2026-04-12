@@ -151,17 +151,27 @@ const Home = () => {
                 <span className="text-[10px] tracking-[0.15em] uppercase text-gray-600 font-mono font-medium">Available for work</span>
               </motion.div>
               
-              <motion.h1 
-                variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
-                className="text-5xl md:text-7xl lg:text-8xl font-display font-medium text-black leading-[1.1] md:leading-[0.9] tracking-tightest"
-              >
-                Naren
-                <br />
-                <span className="relative inline-block">
-                  Selvan
-                  <motion.div initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ delay: 0.8, duration: 0.8 }} className="absolute -bottom-1 h-0.5 bg-black" />
-                </span>
-              </motion.h1>
+              <div className="flex items-center justify-between gap-4">
+                <motion.h1 
+                  variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+                  className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-medium text-black leading-[1.1] md:leading-[0.9] tracking-tightest flex-1"
+                >
+                  Naren
+                  <br />
+                  <span className="relative inline-block">
+                    Selvan
+                    <motion.div initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ delay: 0.8, duration: 0.8 }} className="absolute -bottom-1 h-0.5 bg-black" />
+                  </span>
+                </motion.h1>
+
+                {/* Mobile-only small profile image */}
+                <motion.div
+                  variants={{ hidden: { opacity: 0, scale: 0.8 }, show: { opacity: 1, scale: 1 } }}
+                  className="md:hidden w-24 h-24 rounded-2xl overflow-hidden border border-gray-100 shadow-sm shrink-0"
+                >
+                  <img src={profileImg} alt="Naren Selvan" className="w-full h-full object-cover" />
+                </motion.div>
+              </div>
               
               <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }} className="flex items-center gap-3 text-gray-400">
                 <Cpu className="w-4 h-4" />
@@ -191,7 +201,7 @@ const Home = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="lg:col-span-6 relative flex items-center justify-center py-10 md:py-16 order-1 lg:order-2"
+            className="hidden md:flex lg:col-span-6 relative items-center justify-center py-10 md:py-16 order-1 lg:order-2"
             onMouseEnter={() => setIsHoveringProfile(true)}
             onMouseLeave={() => setIsHoveringProfile(false)}
           >
