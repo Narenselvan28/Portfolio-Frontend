@@ -3,10 +3,10 @@ import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom'
 import { 
   LayoutDashboard, FolderKanban, Award, GraduationCap, 
   Users, Calendar, UserCircle, LogOut, Database, ExternalLink, MessageSquare,
-  Wifi, WifiOff
+  WifiOff
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import api, { getBackendStatus } from '../api';
+import { getBackendStatus } from '../api';
 
 import ProjectForm from './ProjectForm';
 import CertificationForm from './CertificationForm';
