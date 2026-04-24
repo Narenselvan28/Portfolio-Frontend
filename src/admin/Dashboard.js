@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import { 
   LayoutDashboard, FolderKanban, Award, GraduationCap, 
-  Users, Calendar, UserCircle, LogOut, Database, ExternalLink, MessageSquare
+  Users, Calendar, UserCircle, LogOut, Database, ExternalLink, MessageSquare,
+  Wifi, WifiOff
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import api, { getBackendStatus } from '../api';
 
 import ProjectForm from './ProjectForm';
 import CertificationForm from './CertificationForm';
@@ -30,7 +32,7 @@ const SidebarItem = ({ icon: Icon, label, to, active }) => (
   </Link>
 );
 
-const DashboardHome = () => (
+const DashboardHome = ({ mode }) => (
   <div className="space-y-12">
     <div className="flex items-end justify-between">
       <div className="space-y-2">
@@ -38,11 +40,11 @@ const DashboardHome = () => (
         <p className="text-gray-300 text-sm font-light">Quick summary of your portfolio content.</p>
       </div>
       <div className="flex gap-4">
-        <div className="px-6 py-3 bg-white/[0.05] border border-white/[0.1] rounded-2xl">
-          <span className="block text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-1">Database status</span>
+        <div className="px-6 py-3 bg-white/[0.05] border border-white/[0.1] rounded-2xl min-w-[200px]">
+          <span className="block text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-1">Backend Connectivity</span>
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <span className="text-sm text-white font-medium">Operational</span>
+            <div className={`w-2 h-2 rounded-full animate-pulse ${mode === 'dynamic' ? 'bg-green-500' : 'bg-orange-500'}`} />
+            <span className="text-sm text-white font-medium capitalize">{mode} Mode Active</span>
           </div>
         </div>
       </div>
@@ -50,8 +52,8 @@ const DashboardHome = () => (
 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {[
-        { label: 'Projects', value: '11', icon: FolderKanban, color: 'text-blue-400' },
-        { label: 'Certifications', value: '8', icon: Award, color: 'text-purple-400' },
+        { label: 'Projects', value: '14', icon: FolderKanban, color: 'text-blue-400' },
+        { label: 'Certifications', value: '16', icon: Award, color: 'text-purple-400' },
         { label: 'Events', value: '4', icon: Calendar, color: 'text-orange-400' },
       ].map((stat, i) => (
         <motion.div 
@@ -78,13 +80,18 @@ const DashboardHome = () => (
         <Database className="w-64 h-64 text-white" />
       </div>
       <div className="max-w-xl space-y-6 relative z-10">
-        <h3 className="text-2xl font-medium text-white">Media Library</h3>
+        <h3 className="text-2xl font-medium text-white">System Status</h3>
         <p className="text-gray-300 leading-relaxed font-light">
-          Your photos and documents are safely stored in the cloud. You can manage them here to speed up your website.
+          {mode === 'static' 
+            ? "The backend is currently exhausted or unreachable. The site is running on 'Static Fallback' mode using local data. Write operations are disabled."
+            : "The backend is online and fully operational. All data is being synchronized with the cloud database."
+          }
         </p>
-        <button className="px-8 py-3 bg-white text-black text-sm font-medium rounded-xl hover:bg-gray-200 transition-colors">
-          Manage Assets
-        </button>
+        {mode === 'static' && (
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/10 border border-orange-500/20 rounded-lg text-orange-400 text-xs font-mono">
+            <WifiOff className="w-3 h-3" /> READ-ONLY MODE
+          </div>
+        )}
       </div>
     </div>
   </div>
@@ -93,9 +100,19 @@ const DashboardHome = () => (
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [backendMode, setBackendMode] = useState('checking...');
+
+  useEffect(() => {
+    const checkStatus = async () => {
+      const mode = await getBackendStatus();
+      setBackendMode(mode);
+    };
+    checkStatus();
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('adminToken');
+    localStorage.removeItem('backendMode');
     navigate('/admin/login');
   };
 
@@ -114,12 +131,18 @@ const AdminDashboard = () => {
       {/* Sidebar */}
       <aside className="w-80 border-r border-white/[0.05] flex flex-col p-8 fixed h-screen overflow-y-auto">
         <div className="flex items-center gap-4 mb-16 px-6">
-          <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center">
+          <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center relative">
             <UserCircle className="w-6 h-6 text-black" />
+            <div className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full border-2 border-[#050505] ${backendMode === 'dynamic' ? 'bg-green-500' : 'bg-orange-500'}`} />
           </div>
           <div>
             <h1 className="text-lg font-medium leading-tight">Naren Selvan</h1>
-            <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Admin Console</p>
+            <div className="flex items-center gap-1.5">
+              <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Admin Console</p>
+              <span className={`text-[8px] px-1 rounded border ${backendMode === 'dynamic' ? 'border-green-500/30 text-green-500' : 'border-orange-500/30 text-orange-500'}`}>
+                {backendMode}
+              </span>
+            </div>
           </div>
         </div>
 
@@ -155,7 +178,7 @@ const AdminDashboard = () => {
             transition={{ duration: 0.3 }}
           >
             <Routes>
-              <Route path="/" element={<DashboardHome />} />
+              <Route path="/" element={<DashboardHome mode={backendMode} />} />
               <Route path="/messages" element={<MessageInbox />} />
               <Route path="/projects" element={<ProjectForm />} />
               <Route path="/certifications" element={<CertificationForm />} />

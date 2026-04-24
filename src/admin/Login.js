@@ -1,25 +1,54 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import api, { getBackendStatus } from '../api';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Lock, User, ShieldCheck } from 'lucide-react';
+import { Lock, User, ShieldCheck, Wifi, WifiOff } from 'lucide-react';
 
 const AdminLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [backendMode, setBackendMode] = useState('checking...');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkStatus = async () => {
+      const mode = await getBackendStatus();
+      setBackendMode(mode);
+    };
+    checkStatus();
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    setError('');
+    
     try {
-      const { data } = await axios.post('http://localhost:5000/api/admin/login', { username, password });
-      localStorage.setItem('adminToken', data.token);
-      navigate('/admin/dashboard');
+      if (backendMode === 'static') {
+        // Fallback login for static mode
+        if (username === 'admin' && password === 'adminpass123') {
+          localStorage.setItem('adminToken', 'static-token');
+          localStorage.setItem('backendMode', 'static');
+          navigate('/admin/dashboard');
+        } else {
+          setError('Invalid credentials (Static Mode).');
+        }
+      } else {
+        const { data } = await api.post('/admin/login', { username, password });
+        localStorage.setItem('adminToken', data.token);
+        localStorage.setItem('backendMode', 'dynamic');
+        navigate('/admin/dashboard');
+      }
     } catch (err) {
-      setError('Invalid credentials synchronization failure.');
+      if (err.code === 'ECONNABORTED' || !err.response) {
+        // Auto-switch to static if call fails during login
+        setBackendMode('static');
+        setError('Backend unreachable. Switched to Static Fallback. Try again.');
+      } else {
+        setError('Invalid credentials synchronization failure.');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -41,12 +70,30 @@ const AdminLogin = () => {
           <motion.div 
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
-            className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/[0.05] mb-6"
+            className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/[0.05] mb-6 relative"
           >
             <ShieldCheck className="w-8 h-8 text-white" strokeWidth={1.5} />
+            <div className="absolute -top-1 -right-1">
+              {backendMode === 'dynamic' ? (
+                <div className="bg-green-500/20 p-1.5 rounded-full border border-green-500/30">
+                  <Wifi className="w-3 h-3 text-green-500" />
+                </div>
+              ) : (
+                <div className="bg-orange-500/20 p-1.5 rounded-full border border-orange-500/30">
+                  <WifiOff className="w-3 h-3 text-orange-500" />
+                </div>
+              )}
+            </div>
           </motion.div>
           <h1 className="text-3xl font-display font-medium text-white tracking-tight">Admin Console</h1>
-          <p className="text-gray-500 text-sm font-light tracking-wide">Enter credentials to access the nexus.</p>
+          <div className="flex items-center justify-center gap-2">
+            <span className={`text-[9px] uppercase tracking-[0.2em] font-mono px-2 py-0.5 rounded border ${
+              backendMode === 'dynamic' ? 'border-green-500/30 text-green-500 bg-green-500/5' : 'border-orange-500/30 text-orange-500 bg-orange-500/5'
+            }`}>
+              {backendMode} mode
+            </span>
+          </div>
+          <p className="text-gray-500 text-sm font-light tracking-wide pt-2">Enter credentials to access the nexus.</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-6">
@@ -80,7 +127,7 @@ const AdminLogin = () => {
             <motion.p 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-red-400 text-[11px] font-mono text-center tracking-wider"
+              className="text-red-400 text-[11px] font-mono text-center tracking-wider bg-red-400/5 py-2 rounded-lg border border-red-400/10"
             >
               {error}
             </motion.p>
@@ -96,7 +143,7 @@ const AdminLogin = () => {
         </form>
 
         <div className="mt-12 text-center">
-          <p className="text-[10px] text-gray-700 uppercase tracking-[0.3em] font-medium">Terminal v2.0.4 — Secured by RSA</p>
+          <p className="text-[10px] text-gray-700 uppercase tracking-[0.3em] font-medium">Terminal v2.1.0 — {backendMode === 'static' ? 'Local Vault Active' : 'Remote Nexus Active'}</p>
         </div>
       </motion.div>
     </div>

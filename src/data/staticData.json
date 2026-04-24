@@ -1,0 +1,447 @@
+{
+  "personalInfo": {
+    "name": "Naren Selvan",
+    "role": "ML Enthusiast & IoT Developer",
+    "location": "Pollachi, India",
+    "summary": "An enthusiastic engineer focused on building intelligent systems where hardware meets intelligence. Specializing in IoT-ML integration, predictive analytics, and scalable full-stack architectures.",
+    "socials": {
+      "linkedin": "https://www.linkedin.com/in/narenselvan28",
+      "github": "https://github.com/Narenselvan28",
+      "email": "narenselvan77@gmail.com"
+    },
+    "achievements": [
+      "Machine Learning Enthusiast",
+      "IoT & Embedded Systems",
+      "Full Stack MERN Developer",
+      "Hardware-Software Architect",
+      "Technical Event Leader",
+      "Creative Problem Solver"
+    ]
+  },
+  "projects": [
+    {
+      "_id": "static_project_1",
+      "title": "Portfolio Website",
+      "description": "A personal portfolio crafted to present my work, skills, and journey in a clean and interactive way. Designed with a focus on minimal UI, smooth navigation, and real project storytelling, it serves as my digital identity and central hub for everything I build.",
+      "techStack": ["MongoDB", "Express", "React", "Node.js", "Cloudinary"],
+      "domain": "Full Stack",
+      "priorityOverride": 110,
+      "images": ["/assets/projects/portfolio-main.png"]
+    },
+    {
+      "_id": "static_project_2",
+      "title": "SpectraLabs",
+      "description": "A self-initiated tech brand where I design and develop scalable digital solutions, including web platforms, ERP systems, and user-focused applications. SpectraLabs reflects my approach to building real-world products with both technical depth and business perspective.",
+      "techStack": ["Full Stack", "Scalable Solutions", "Brand Development"],
+      "domain": "Full Stack",
+      "priorityOverride": 105,
+      "images": ["/assets/projects/spectralabs.png"]
+    },
+    {
+      "_id": "static_project_3",
+      "title": "Cattle Health Monitoring System",
+      "description": "An IoT-based solution designed to monitor livestock health in real time using sensor data such as temperature and activity levels. The system enables early detection of health issues and provides actionable insights, aiming to support farmers with smarter and more efficient livestock management.",
+      "techStack": ["ESP32", "Random Forest", "IoT", "ML"],
+      "domain": "ML + IoT",
+      "priorityOverride": 100,
+      "images": ["/assets/projects/cattle-iot.png"]
+    },
+    {
+      "_id": "static_project_4",
+      "title": "Alumni Management Platform (SIH 2025)",
+      "description": "A centralized digital platform built to connect alumni, students, and coordinators through a unified ecosystem. Features include mentor matching, real-time chat, event management, and a social feed, all designed to strengthen engagement and career guidance within institutions.",
+      "techStack": ["React", "AI Matching", "Firebase", "Real-time Chat"],
+      "domain": "Full Stack",
+      "priorityOverride": 95
+    },
+    {
+      "_id": "static_project_5",
+      "title": "EMS Cocos ERP (Ongoing)",
+      "description": "A comprehensive ERP system focused on streamlining business operations through modular and scalable architecture. It includes features for workflow management, user roles, and an improved UI/UX, designed to enhance efficiency and adaptability for growing organizations.",
+      "techStack": ["ERP", "Modular Architecture", "Scalable Systems"],
+      "domain": "Full Stack",
+      "priorityOverride": 90
+    },
+    {
+      "_id": "static_project_6",
+      "title": "BulkMail System",
+      "description": "A backend-driven system for sending automated bulk emails efficiently. Built to handle large-scale communication, it focuses on performance, reliability, and integration with email services, making it suitable for campaigns, notifications, and user engagement.",
+      "techStack": ["Automation", "Mail Servers", "Analytics"],
+      "domain": "Tools",
+      "priorityOverride": 85
+    },
+    {
+      "_id": "static_project_7",
+      "title": "PawBridge",
+      "description": "A platform aimed at connecting pets with potential adopters, creating a bridge between animals and caring homes. Designed with a user-friendly interface, it focuses on accessibility, emotional engagement, and simplifying the adoption process.",
+      "techStack": ["Web", "Social Impact", "Rescue Coordination"],
+      "domain": "Full Stack",
+      "priorityOverride": 80
+    },
+    {
+      "_id": "static_project_8",
+      "title": "Vasavi Agency Website",
+      "description": "A business-oriented website developed to establish a strong digital presence for an agency. It emphasizes clean design, structured content, and responsive layout to effectively communicate services and attract potential clients.",
+      "techStack": ["Web Design", "Responsive Layout", "Agency Platform"],
+      "domain": "Frontend",
+      "priorityOverride": 75
+    },
+    {
+      "_id": "static_project_9",
+      "title": "Greenden",
+      "description": "A frontend project centered around building a visually appealing and responsive interface, showcasing design consistency, layout structuring, and modern UI practices.",
+      "techStack": ["HTML", "CSS", "Responsive Design"],
+      "domain": "Frontend",
+      "priorityOverride": 70
+    },
+    {
+      "_id": "static_project_10",
+      "title": "Actodo",
+      "description": "A task management application that allows users to create, update, and manage daily tasks efficiently. Built with focus on clean state handling and user-friendly interaction, demonstrating core CRUD operations and application logic.",
+      "techStack": ["React", "State Management", "CRUD"],
+      "domain": "Full Stack",
+      "priorityOverride": 65
+    },
+    {
+      "_id": "static_project_11",
+      "title": "Nostra Frontend",
+      "description": "A UI-focused project highlighting frontend development skills, including layout design, responsiveness, and component structuring to create a seamless user experience.",
+      "techStack": ["React", "UI/UX", "Responsive Design"],
+      "domain": "Frontend",
+      "priorityOverride": 60
+    },
+    {
+      "_id": "static_project_12",
+      "title": "Line Follower Robot",
+      "description": "An autonomous robot built using IR sensors to detect and follow a predefined path. The project demonstrates foundational concepts in embedded systems, real-time control, and hardware-software integration.",
+      "techStack": ["Arduino", "IR Sensors", "Embedded C"],
+      "domain": "IoT",
+      "priorityOverride": 55
+    },
+    {
+      "_id": "static_project_13",
+      "title": "Obstacle Avoidance Robot",
+      "description": "A robotic system capable of detecting obstacles using ultrasonic sensors and navigating around them autonomously, showcasing dynamic decision-making and sensor integration.",
+      "techStack": ["Arduino", "Ultrasonic Sensor", "Robotics"],
+      "domain": "IoT",
+      "priorityOverride": 50
+    },
+    {
+      "_id": "static_project_14",
+      "title": "Venture – Agent–Contractor Connection Platform",
+      "description": "A digital platform designed to connect agents and contractors in a streamlined and transparent ecosystem. The system enables agents to post requirements and contractors to discover, bid, and collaborate on projects efficiently. It focuses on reducing communication gaps, improving trust, and accelerating project initiation in the construction and service domain.",
+      "techStack": ["Frontend", "UX Design", "ML Integration"],
+      "domain": "Frontend",
+      "priorityOverride": 45
+    }
+  ],
+  "events": [
+    {
+      "_id": "static_event_1",
+      "title": "Co-Founder — Websyra",
+      "role": "Co-Founder",
+      "description": "Contributing to real-world product development, technical execution, and building scalable web solutions.",
+      "insights": "Transitioned from academic projects to real-world product development and startup experience. Developed frontend systems and helped shape product direction.",
+      "date": "2024-01-15T00:00:00Z",
+      "images": ["/assets/events/websyra-launch.png"]
+    },
+    {
+      "_id": "static_event_2",
+      "title": "Office Bearer & Event Coordinator — Spectrum",
+      "role": "Office Bearer",
+      "description": "Actively leading and coordinating multiple technical and non-technical events with structured planning.",
+      "insights": "Built strong leadership, coordination, and execution skills in high-pressure environments. Managed 180+ participants across events.",
+      "participantCount": 180,
+      "date": "2025-10-15T00:00:00Z",
+      "images": ["/assets/events/spectrum-leadership.png"]
+    },
+    {
+      "_id": "static_event_3",
+      "title": "Event Coordination — Spectrum (3 Events)",
+      "role": "Coordinator",
+      "description": "Played a key role in organizing and executing 3 Spectrum events, contributing to planning and logistics.",
+      "insights": "Strengthened teamwork, responsibility, and structured execution skills through logistical management.",
+      "date": "2025-08-20T00:00:00Z",
+      "images": ["/assets/events/spectrum-events.png"]
+    },
+    {
+      "_id": "static_event_4",
+      "title": "Class Representative",
+      "role": "Representative",
+      "description": "Acted as a communication bridge between students and faculty, ensuring smooth coordination.",
+      "insights": "Developed communication, accountability, and people management skills by representing student needs effectively.",
+      "date": "2023-07-01T00:00:00Z"
+    }
+  ],
+  "participations": [
+    {
+      "_id": "static_part_1",
+      "title": "Reverse Engineering Prototype Demonstration",
+      "result": "Winner",
+      "date": "2025-02-10T00:00:00Z",
+      "takeaway": "Demonstrated strong problem-solving and analytical skills by deconstructing and presenting a working prototype, showcasing deep technical understanding."
+    },
+    {
+      "_id": "static_part_2",
+      "title": "Web Nova Event",
+      "organization": "Digiflash Association, MCET",
+      "result": "Winner",
+      "date": "2025-03-15T00:00:00Z",
+      "takeaway": "Recognized for building and presenting an innovative web-based solution, highlighting frontend and problem-solving capabilities."
+    },
+    {
+      "_id": "static_part_3",
+      "title": "Department Level PPT Presentation",
+      "organization": "Dr. Mahalingam College of Engineering and Technology (MCET)",
+      "result": "Winner",
+      "date": "2025-04-05T00:00:00Z",
+      "takeaway": "Secured first place through a structured and impactful technical presentation."
+    },
+    {
+      "_id": "static_part_4",
+      "title": "Shakthi Hackathon",
+      "result": "Finalist",
+      "date": "2025-05-01T00:00:00Z",
+      "takeaway": "Ranked among top teams from 1000+ participants, demonstrating strong innovation and execution under competitive conditions."
+    },
+    {
+      "_id": "static_part_5",
+      "title": "TNSCST Project Expo",
+      "result": "Finalist",
+      "date": "2025-06-01T00:00:00Z",
+      "takeaway": "Selected as a finalist for presenting a project with real-world relevance and technical depth."
+    },
+    {
+      "_id": "static_part_6",
+      "title": "Project Expo (SRC, Dr. MCET)",
+      "result": "Finalist",
+      "date": "2025-07-01T00:00:00Z",
+      "takeaway": "Recognized for developing and presenting a technically sound and impactful project."
+    },
+    {
+      "_id": "static_part_7",
+      "title": "VIT Bhopal Hackathon (Qualified)",
+      "result": "Finalist",
+      "date": "2025-01-20T00:00:00Z",
+      "takeaway": "Shortlisted as a finalist among national-level participants (unable to attend final round)."
+    },
+    {
+      "_id": "static_part_8",
+      "title": "TN Impact",
+      "result": "Top Performer",
+      "date": "2025-08-01T00:00:00Z",
+      "takeaway": "Recognized as a top-performing team within the assigned problem statement, highlighting solution quality and approach."
+    },
+    {
+      "_id": "static_part_9",
+      "title": "Karpagam Hackathon",
+      "result": "Finalist",
+      "date": "2025-09-01T00:00:00Z",
+      "takeaway": "Ranked among top 50 teams out of 600+ teams across India, demonstrating strong competitive performance and securing a finalist position."
+    },
+    {
+      "_id": "static_part_10",
+      "title": "Smart India Hackathon (Internal Round)",
+      "result": "Shortlisted",
+      "date": "2025-10-01T00:00:00Z",
+      "takeaway": "Selected among top 50 teams, showcasing strong problem-solving and team capability."
+    },
+    {
+      "_id": "static_part_11",
+      "title": "TN Entrepreneurship Hackathon",
+      "result": "Participant",
+      "date": "2025-11-01T00:00:00Z",
+      "takeaway": "Engaged in startup-focused problem solving and business-oriented thinking."
+    },
+    {
+      "_id": "static_part_12",
+      "title": "Ramakrishna College Ideathon",
+      "result": "Participant",
+      "date": "2025-12-01T00:00:00Z",
+      "takeaway": "Explored innovative ideas and solution-building in a competitive ideation environment."
+    },
+    {
+      "_id": "static_part_13",
+      "title": "KPR College PPT Presentation",
+      "result": "Participant",
+      "date": "2025-03-01T00:00:00Z",
+      "takeaway": "Presented technical concepts in a competitive academic setting."
+    },
+    {
+      "_id": "static_part_14",
+      "title": "DEM 2 (PPT & Quiz)",
+      "organization": "Nehru Institute of Technology",
+      "result": "Participant",
+      "date": "2025-02-01T00:00:00Z",
+      "takeaway": "Participated in both technical presentation and quiz, demonstrating versatility in knowledge and communication."
+    },
+    {
+      "_id": "static_part_15",
+      "title": "Coding Event (Digiflash Association, MCET)",
+      "result": "Participant",
+      "date": "2025-04-15T00:00:00Z",
+      "takeaway": "Actively participated in competitive coding, strengthening problem-solving skills."
+    }
+  ],
+  "certifications": [
+    {
+      "_id": "static_cert_1",
+      "title": "Web Development Foundations (HTML, CSS – GUVI / HCL)",
+      "issuer": "GUVI / HCL",
+      "category": "Web",
+      "takeaway": "Built a strong foundation in web development by understanding structure, styling, and responsive design principles, enabling the creation of clean and user-friendly interfaces.",
+      "certificateImage": "/assets/certifications/html-css-guvi.jpg"
+    },
+    {
+      "_id": "static_cert_2",
+      "title": "JavaScript (GUVI / HCL)",
+      "issuer": "GUVI / HCL",
+      "category": "Web",
+      "takeaway": "Developed core programming skills in JavaScript, including DOM manipulation, asynchronous behavior, and building interactive web applications.",
+      "certificateImage": "/assets/certifications/javascript-guvi.jpg"
+    },
+    {
+      "_id": "static_cert_3",
+      "title": "React.js Development (Meta / Coursera)",
+      "issuer": "Meta / Coursera",
+      "category": "Web",
+      "takeaway": "Learned to build dynamic and scalable frontend applications using React, focusing on component-based architecture, state management, and modern UI practices.",
+      "certificateImage": ""
+    },
+    {
+      "_id": "static_cert_4",
+      "title": "Node.js & Express (Udemy)",
+      "issuer": "Udemy",
+      "category": "Backend",
+      "takeaway": "Gained hands-on experience in building backend systems and RESTful APIs, handling routing, middleware, and server-side logic for scalable applications.",
+      "certificateImage": ""
+    },
+    {
+      "_id": "static_cert_5",
+      "title": "MongoDB (GUVI)",
+      "issuer": "GUVI",
+      "category": "Web",
+      "takeaway": "Understood NoSQL database design, data modeling, and CRUD operations to efficiently manage application data in full-stack systems.",
+      "certificateImage": ""
+    },
+    {
+      "_id": "static_cert_6",
+      "title": "Build a Backend REST API with Node.js (Udemy)",
+      "issuer": "Udemy",
+      "category": "Backend",
+      "takeaway": "Designed and implemented REST APIs from scratch, focusing on clean architecture, request handling, and real-world backend workflows.",
+      "certificateImage": ""
+    },
+    {
+      "_id": "static_cert_7",
+      "title": "Arduino (GUVI / HCL)",
+      "issuer": "GUVI / HCL",
+      "category": "IoT",
+      "takeaway": "Learned microcontroller programming, sensor integration, and real-time control systems, forming the foundation for embedded and IoT projects.",
+      "certificateImage": "/assets/certifications/arduino-guvi.jpg"
+    },
+    {
+      "_id": "static_cert_8",
+      "title": "Embedded C (GUVI)",
+      "issuer": "GUVI",
+      "category": "IoT",
+      "takeaway": "Developed low-level programming skills for embedded systems, focusing on memory handling, hardware interaction, and efficient code execution.",
+      "certificateImage": ""
+    },
+    {
+      "_id": "static_cert_9",
+      "title": "Machine Learning using Python (Udemy)",
+      "issuer": "Udemy",
+      "category": "ML",
+      "takeaway": "Explored core ML concepts including data preprocessing, model building, and evaluation using Python libraries.",
+      "certificateImage": "/assets/certifications/ml-python-udemy.jpg"
+    },
+    {
+      "_id": "static_cert_10",
+      "title": "30 Projects in 30 Days – Machine Learning",
+      "issuer": "Self-paced",
+      "category": "ML",
+      "takeaway": "Completed an intensive hands-on challenge building multiple ML mini-projects, strengthening practical understanding and rapid problem-solving skills.",
+      "certificateImage": ""
+    },
+    {
+      "_id": "static_cert_11",
+      "title": "Python (Dr. MCET Summer Camp)",
+      "issuer": "Dr. MCET",
+      "category": "Languages",
+      "takeaway": "Built a strong foundation in Python programming, covering core syntax, logic building, and problem-solving techniques.",
+      "certificateImage": ""
+    },
+    {
+      "_id": "static_cert_12",
+      "title": "Data Structures & Algorithms using C",
+      "issuer": "Academic",
+      "category": "Core",
+      "takeaway": "Learned fundamental data structures and algorithms, improving problem-solving ability and code efficiency.",
+      "certificateImage": ""
+    },
+    {
+      "_id": "static_cert_13",
+      "title": "SQL for Beginners",
+      "issuer": "Academic",
+      "category": "Core",
+      "takeaway": "Gained knowledge in database querying, joins, and data manipulation for structured data handling.",
+      "certificateImage": ""
+    },
+    {
+      "_id": "static_cert_14",
+      "title": "Data Analytics (NPTEL – Ongoing)",
+      "issuer": "NPTEL",
+      "category": "ML",
+      "takeaway": "Currently learning data analysis techniques, including data interpretation, visualization, and extracting meaningful insights.",
+      "certificateImage": ""
+    },
+    {
+      "_id": "static_cert_15",
+      "title": "Introduction to LLMs (NPTEL)",
+      "issuer": "NPTEL",
+      "category": "ML",
+      "takeaway": "Explored the fundamentals of large language models, including their working principles and real-world applications.",
+      "certificateImage": ""
+    },
+    {
+      "_id": "static_cert_16",
+      "title": "Business Fundamentals for Entrepreneurs (NPTEL)",
+      "issuer": "NPTEL",
+      "category": "Business",
+      "takeaway": "Learned key business concepts including value creation, market understanding, and fundamentals of building and scaling ventures.",
+      "certificateImage": ""
+    }
+  ],
+  "academics": [
+    {
+      "_id": "static_acad_1",
+      "institution": "College of Engineering",
+      "degree": "Electronics & Communication",
+      "endYear": 2026,
+      "grade": "8.5 CGPA",
+      "description": "Focused on embedded systems and IoT.",
+      "achievements": ["Dean's List", "Top 5% in technical cohort"],
+      "documents": ["/assets/academic/transcript.png"]
+    }
+  ],
+  "profile": {
+    "name": "Naren Selvan",
+    "role": "ML Enthusiast & IoT Developer",
+    "location": "Pollachi, India",
+    "summary": "An enthusiastic engineer focused on building intelligent systems where hardware meets intelligence. Specializing in IoT-ML integration, predictive analytics, and scalable full-stack architectures.",
+    "socials": {
+      "linkedin": "https://www.linkedin.com/in/narenselvan28",
+      "github": "https://github.com/Narenselvan28",
+      "email": "narenselvan77@gmail.com"
+    },
+    "achievements": [
+      "Machine Learning Enthusiast",
+      "IoT & Embedded Systems",
+      "Full Stack MERN Developer",
+      "Hardware-Software Architect",
+      "Technical Event Leader",
+      "Creative Problem Solver"
+    ]
+  }
+}
