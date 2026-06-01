@@ -1,9 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, MapPin, Award, ChevronRight } from 'lucide-react';
+import { Calendar, MapPin, Award, ChevronRight, ExternalLink, Maximize2 } from 'lucide-react';
 import api from '../api';
 
 const ParticipationModal = ({ item, onClose }) => {
+  useEffect(() => {
+    const handleEsc = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handleEsc);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'auto';
+    };
+  }, [onClose]);
+
   if (!item) return null;
 
   return (
@@ -48,6 +59,48 @@ const ParticipationModal = ({ item, onClose }) => {
               <p className="text-gray-600 text-lg leading-relaxed font-light italic">
                 "{item.takeaway}"
               </p>
+            </div>
+          )}
+
+          {/* Images Section */}
+          {item.images && item.images.length > 0 && (
+            <div className="space-y-8">
+              <span className="text-[10px] tracking-[0.2em] text-gray-400 uppercase font-semibold block">Media</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {item.images.map((img, idx) => (
+                  <div key={idx} className="aspect-video bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 relative group">
+                    <a href={img} target="_blank" rel="noreferrer" className="block w-full h-full relative cursor-zoom-in">
+                      <img src={img.replace(/\.pdf$/i, '.jpg')} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center pointer-events-none">
+                        <span className="opacity-0 group-hover:opacity-100 bg-white/90 text-black px-4 py-2 rounded-xl text-[10px] uppercase font-bold tracking-widest shadow-xl">
+                          CLICK TO VIEW FULL
+                        </span>
+                      </div>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Certificate Display */}
+          {item.certificate && (
+            <div className="pt-8 border-t border-gray-50">
+              <span className="text-[10px] tracking-[0.2em] text-gray-400 uppercase font-semibold block mb-8">Certificate</span>
+              <div className="aspect-[1.414/1] bg-gray-50 border border-gray-100 overflow-hidden rounded-2xl group relative max-w-2xl">
+                <a href={item.certificate} target="_blank" rel="noreferrer" className="block w-full h-full relative cursor-zoom-in">
+                  <img 
+                    src={item.certificate.replace(/\.pdf$/i, '.jpg')} 
+                    alt="Certificate" 
+                    className="w-full h-full object-contain p-4 md:p-8 transition-transform duration-700 group-hover:scale-105" 
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center pointer-events-none">
+                    <span className="opacity-0 group-hover:opacity-100 bg-white/90 text-black px-4 py-2 rounded-xl text-[10px] uppercase font-bold tracking-widest shadow-xl transition-opacity">
+                      CLICK TO VIEW FULL
+                    </span>
+                  </div>
+                </a>
+              </div>
             </div>
           )}
         </div>
@@ -130,12 +183,22 @@ const Participations = () => {
             variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
             whileHover={{ y: -12 }}
             onClick={() => setSelectedItem(item)}
-            className="group cursor-pointer bg-white border border-gray-100 p-10 rounded-[2.5rem] shadow-sm hover:shadow-2xl transition-all duration-500 text-black"
+            className="group cursor-pointer bg-white border border-gray-100 p-0 rounded-[2.5rem] shadow-sm hover:shadow-2xl transition-all duration-500 text-black overflow-hidden flex flex-col"
           >
-            <div className="space-y-8">
+            {item.images && item.images[0] && (
+              <div className="h-48 w-full bg-gray-50 border-b border-gray-50 overflow-hidden relative">
+                <img src={item.images[0].replace(/\.pdf$/i, '.jpg')} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              </div>
+            )}
+            <div className="p-10 space-y-8 flex-1">
               <div className="flex justify-between items-start">
-                <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center text-black/20 group-hover:text-black transition-colors">
-                  <Award className="w-6 h-6" />
+                <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center text-black/20 group-hover:text-black transition-colors overflow-hidden border border-gray-100">
+                  {item.images && item.images[0] ? (
+                    <img src={item.images[0].replace(/\.pdf$/i, '.jpg')} alt="" className="w-full h-full object-cover" />
+                  ) : (
+                    <Award className="w-6 h-6" />
+                  )}
                 </div>
                 {item.result && item.result !== 'None' && (
                   <span className="text-[10px] font-bold tracking-widest uppercase text-black font-mono">{item.result}</span>
@@ -161,6 +224,15 @@ const Participations = () => {
           />
         )}
       </AnimatePresence>
+
+      <div className="mt-24 flex justify-center border-t border-gray-100 pt-16">
+        <Link to="/certifications" className="group flex flex-col items-center gap-4 hover:scale-105 transition-transform">
+          <span className="text-[10px] tracking-[0.3em] uppercase font-mono font-bold text-gray-400">Next Folder</span>
+          <span className="text-2xl md:text-4xl font-display font-medium text-black tracking-tight group-hover:underline underline-offset-8">
+            Professional Certifications
+          </span>
+        </Link>
+      </div>
     </motion.div>
   );
 };

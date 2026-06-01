@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Layers, ArrowUpRight, Sparkles, X } from 'lucide-react';
 import api from '../api';
@@ -37,7 +38,7 @@ const ProjectCard = ({ project, isFeatured, onClick }) => {
       <div className={`bg-gray-50 relative overflow-hidden rounded-t-[1.5rem] md:rounded-t-[2.5rem] ${isFeatured ? 'md:aspect-[21/9] aspect-video' : 'aspect-video'}`}>
         {coverImage ? (
           <img 
-            src={coverImage} 
+            src={coverImage.replace(/\.pdf$/i, '.jpg')} 
             alt={project.title} 
             className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
           />
@@ -180,8 +181,15 @@ const ProjectModal = ({ project, onClose }) => {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
                 {section.data.map((img, idx) => (
-                  <div key={idx} className="aspect-video bg-gray-50 rounded-2xl md:rounded-3xl overflow-hidden border border-gray-50">
-                    <img src={img} alt="" className="w-full h-full object-cover" />
+                  <div key={idx} className="aspect-video bg-gray-50 rounded-2xl md:rounded-3xl overflow-hidden border border-gray-50 relative group">
+                    <a href={img} target="_blank" rel="noreferrer" className="block w-full h-full relative cursor-zoom-in">
+                      <img src={img.replace(/\.pdf$/i, '.jpg')} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center pointer-events-none">
+                        <span className="opacity-0 group-hover:opacity-100 bg-white/90 text-black px-4 py-2 rounded-xl text-[10px] uppercase font-bold tracking-widest shadow-xl">
+                          CLICK TO VIEW FULL
+                        </span>
+                      </div>
+                    </a>
                   </div>
                 ))}
               </div>
@@ -273,6 +281,15 @@ const Projects = () => {
       <AnimatePresence>
         {selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
       </AnimatePresence>
+
+      <div className="mt-24 flex justify-center border-t border-gray-100 pt-16">
+        <Link to="/certifications" className="group flex flex-col items-center gap-4 hover:scale-105 transition-transform">
+          <span className="text-[10px] tracking-[0.3em] uppercase font-mono font-bold text-gray-400">Next Folder</span>
+          <span className="text-2xl md:text-4xl font-display font-medium text-black tracking-tight group-hover:underline underline-offset-8">
+            Professional Certifications
+          </span>
+        </Link>
+      </div>
     </motion.div>
   );
 };

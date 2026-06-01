@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Award, ExternalLink, Calendar, ChevronRight } from 'lucide-react';
+import { Award, ExternalLink, Calendar, ChevronRight, Maximize2 } from 'lucide-react';
 import api from '../api';
 
 const CertificationModal = ({ cert, onClose }) => {
+  useEffect(() => {
+    const handleEsc = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handleEsc);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'auto';
+    };
+  }, [onClose]);
+
   if (!cert) return null;
 
   return (
@@ -39,13 +49,20 @@ const CertificationModal = ({ cert, onClose }) => {
 
           <div className="aspect-[1.414/1] bg-gray-50 border border-gray-100 overflow-hidden rounded-2xl group relative">
             {cert.certificateImage ? (
-              <motion.img 
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.8 }}
-                src={cert.certificateImage} 
-                alt={`${cert.title} Certificate`} 
-                className="w-full h-full object-contain p-4 md:p-8"
-              />
+                <a href={cert.certificateImage} target="_blank" rel="noreferrer" className="w-full h-full block relative cursor-zoom-in">
+                  <motion.img 
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.8 }}
+                    src={cert.certificateImage.replace(/\.pdf$/i, '.jpg')} 
+                    alt={`${cert.title} Certificate`} 
+                    className="w-full h-full object-contain p-4 md:p-8"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center pointer-events-none">
+                    <span className="opacity-0 group-hover:opacity-100 bg-white/90 text-black px-4 py-2 rounded-xl text-[10px] uppercase font-bold tracking-widest transition-opacity shadow-xl">
+                      CLICK TO VIEW FULL
+                    </span>
+                  </div>
+                </a>
             ) : (
               <div className="w-full h-full flex flex-col items-center justify-center space-y-4">
                 <Award className="w-16 h-16 text-gray-100" />

@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GraduationCap, ChevronRight, Book } from 'lucide-react';
+import { GraduationCap, ChevronRight, Book, Maximize2 } from 'lucide-react';
 import api from '../api';
 
 const AcademicModal = ({ academic, onClose }) => {
+  useEffect(() => {
+    const handleEsc = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handleEsc);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'auto';
+    };
+  }, [onClose]);
+
   if (!academic) return null;
 
   return (
@@ -64,14 +74,18 @@ const AcademicModal = ({ academic, onClose }) => {
                     viewport={{ once: true }}
                     className="aspect-[1.414/1] bg-gray-50 border border-gray-50 overflow-hidden rounded-2xl group relative shadow-sm"
                   >
-                    <motion.img 
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.8 }}
-                      src={doc} alt="Academic Document" className="w-full h-full object-contain p-4 md:p-8" 
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                      <GraduationCap className="w-16 h-16 text-black/5" />
-                    </div>
+                    <a href={doc} target="_blank" rel="noreferrer" className="block w-full h-full relative cursor-zoom-in">
+                      <motion.img 
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ duration: 0.8 }}
+                        src={doc.replace(/\.pdf$/i, '.jpg')} alt="Academic Document" className="w-full h-full object-contain p-4 md:p-8" 
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center pointer-events-none">
+                        <span className="opacity-0 group-hover:opacity-100 bg-white/90 text-black px-4 py-2 rounded-xl text-[10px] uppercase font-bold tracking-widest shadow-xl">
+                          CLICK TO VIEW FULL
+                        </span>
+                      </div>
+                    </a>
                   </motion.div>
                 ))}
               </div>
