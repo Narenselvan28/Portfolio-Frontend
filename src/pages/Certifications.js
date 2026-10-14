@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Award, ExternalLink, Calendar, ChevronRight, Maximize2 } from 'lucide-react';
+import { Award, ExternalLink, Calendar, ChevronRight } from 'lucide-react';
 import api from '../api';
 
 const CertificationModal = ({ cert, onClose }) => {

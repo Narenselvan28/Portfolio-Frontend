@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, MapPin, Award, ChevronRight, ExternalLink, Maximize2 } from 'lucide-react';
+import { Calendar, MapPin, Award, ChevronRight } from 'lucide-react';
 import api from '../api';
 
 const ParticipationModal = ({ item, onClose }) => {
