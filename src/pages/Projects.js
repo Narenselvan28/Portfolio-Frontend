@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Layers, ArrowUpRight, Sparkles, X } from 'lucide-react';
+import { Layers, ArrowUpRight, Sparkles, X, Building2 } from 'lucide-react';
 import api from '../api';
 
 const Badge = ({ children, variant = 'default' }) => {
@@ -50,6 +50,12 @@ const ProjectCard = ({ project, isFeatured, onClick }) => {
         <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6">
           <Badge variant={isFeatured ? 'highlight' : 'accent'}>{project.domain}</Badge>
         </div>
+        {project.outcome === 'Startup Initiative' && (
+          <div className="absolute top-4 right-4 md:top-5 md:right-5 flex items-center gap-1.5 bg-amber-50 border border-amber-200 text-amber-700 px-3 py-1.5 rounded-full shadow-sm">
+            <Building2 className="w-3 h-3" />
+            <span className="text-[8px] tracking-[0.15em] uppercase font-mono font-bold">Startup</span>
+          </div>
+        )}
       </div>
 
       <div className="p-6 md:p-10 space-y-3 md:space-y-4">
