@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Layers, ArrowUpRight, Sparkles, X, Building2 } from 'lucide-react';
+import { Layers, ArrowUpRight, Sparkles, X, Building2, Rocket, ChevronRight } from 'lucide-react';
 import api from '../api';
 
 const Badge = ({ children, variant = 'default' }) => {
@@ -244,6 +244,9 @@ const Projects = () => {
     return new Date(b.createdAt) - new Date(a.createdAt);
   });
 
+  const rearmProject = projects.find(p => p.outcome === 'Startup Initiative');
+  const regularList = displayList.filter(p => p.outcome !== 'Startup Initiative');
+
   if (loading) return (
     <div className="flex flex-col justify-center items-center h-[70vh] gap-6">
       <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} className="w-10 h-10 border-2 border-gray-100 border-t-black rounded-full" />
@@ -263,6 +266,96 @@ const Projects = () => {
         </div>
       </div>
 
+      {/* ── ReArm One — Featured Startup Section ── */}
+      {rearmProject && (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          onClick={() => setSelectedProject(rearmProject)}
+          className="mb-20 md:mb-32 cursor-pointer group"
+        >
+          {/* Section label */}
+          <div className="flex items-center gap-3 mb-6 md:mb-8">
+            <span className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
+            <span className="text-[10px] tracking-[0.3em] uppercase text-amber-500 font-mono font-bold">Startup Venture</span>
+            <div className="h-px flex-1 bg-gradient-to-r from-amber-200 to-transparent" />
+          </div>
+
+          {/* Hero banner */}
+          <div className="relative overflow-hidden rounded-[2rem] md:rounded-[3rem] bg-black min-h-[320px] md:min-h-[440px] flex flex-col justify-between p-8 md:p-16">
+
+            {/* Animated background grid */}
+            <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)', backgroundSize: '48px 48px' }} />
+
+            {/* Glowing orb */}
+            <motion.div
+              animate={{ scale: [1, 1.15, 1], opacity: [0.15, 0.28, 0.15] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-amber-500 blur-3xl pointer-events-none"
+            />
+            <motion.div
+              animate={{ scale: [1, 1.1, 1], opacity: [0.08, 0.18, 0.08] }}
+              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+              className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-white blur-3xl pointer-events-none"
+            />
+
+            {/* Top row */}
+            <div className="relative flex items-start justify-between flex-wrap gap-4">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 bg-amber-500/20 border border-amber-500/30 text-amber-400 px-4 py-2 rounded-full">
+                  <Building2 className="w-3.5 h-3.5" />
+                  <span className="text-[9px] tracking-[0.2em] uppercase font-mono font-bold">ReArm Technologies</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white/5 border border-white/10 text-white/50 px-4 py-2 rounded-full">
+                  <Rocket className="w-3 h-3" />
+                  <span className="text-[9px] tracking-[0.2em] uppercase font-mono font-bold">Startup Initiative</span>
+                </div>
+              </div>
+              <motion.div
+                whileHover={{ x: 4 }}
+                className="flex items-center gap-2 text-white/30 group-hover:text-white/70 transition-colors duration-300"
+              >
+                <span className="text-[9px] tracking-[0.2em] uppercase font-mono font-bold">Explore</span>
+                <ChevronRight className="w-4 h-4" />
+              </motion.div>
+            </div>
+
+            {/* Main content */}
+            <div className="relative mt-8 md:mt-0 space-y-5 md:space-y-6 max-w-3xl">
+              <div>
+                <p className="text-white/30 text-[10px] tracking-[0.3em] uppercase font-mono font-bold mb-3">Assistive Robotics · Neural Interfaces · Edge AI</p>
+                <h2 className="text-3xl md:text-6xl font-display font-medium text-white leading-tight tracking-tight">
+                  ReArm One
+                </h2>
+                <p className="text-white/40 text-sm md:text-base mt-1 font-light tracking-wide">AI-Powered Modular Occupational Prosthetic</p>
+              </div>
+              <p className="text-white/50 text-sm md:text-base leading-relaxed max-w-2xl">
+                Hybrid EEG–sEMG control architecture for task-specific modular prosthetic attachments — combining neural-intent recognition with muscle-activity signals for rehabilitation and industrial use.
+              </p>
+              <div className="flex flex-wrap gap-2 pt-2">
+                {rearmProject.techStack?.slice(0, 5).map(tech => (
+                  <span key={tech} className="px-3 py-1.5 border border-white/10 text-white/30 text-[9px] tracking-widest font-mono uppercase rounded-lg bg-white/5">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Hover CTA strip */}
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              whileHover={{ opacity: 1, y: 0 }}
+              className="absolute bottom-8 right-8 md:bottom-12 md:right-16 flex items-center gap-3 bg-white text-black px-6 py-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-2xl"
+            >
+              <span className="text-[10px] tracking-[0.2em] uppercase font-mono font-bold">View Project</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </motion.div>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Sort tabs */}
       <div className="flex items-center justify-center md:justify-start gap-4 mb-12 md:mb-20">
         {['featured', 'latest'].map(mode => (
           <button key={mode} onClick={() => setSortMode(mode)} className={`px-6 md:px-8 py-2 md:py-3 text-[10px] tracking-[0.3em] uppercase font-mono font-bold transition-all border-b-2 ${sortMode === mode ? 'border-black text-black' : 'border-transparent text-gray-300'}`}>
@@ -273,7 +366,7 @@ const Projects = () => {
 
       <motion.div initial="hidden" animate="show" variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1 } } }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
         <AnimatePresence mode="popLayout">
-          {displayList.map((project, idx) => (
+          {regularList.map((project, idx) => (
             <ProjectCard 
               key={project._id} 
               project={project} 
