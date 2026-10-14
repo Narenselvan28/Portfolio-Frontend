@@ -7,27 +7,27 @@
 
 @layer base {
   :root {
-    --black: #000000;
+    --black: #0F172A;
     --white: #FFFFFF;
-    --gray-50: #F7F7F7;
-    --gray-100: #EEEEEE;
-    --gray-200: #E0E0E0;
-    --gray-300: #CCCCCC;
-    --gray-400: #999999;
-    --gray-500: #666666;
-    --gray-600: #444444;
-    --gray-700: #222222;
-    --gray-800: #111111;
-    --gray-900: #0A0A0A;
+    --gray-50: #FAF9F6;
+    --gray-100: #F3EFEA;
+    --gray-200: #E6E1D8;
+    --gray-300: #C8C2B7;
+    --gray-400: #948D83;
+    --gray-500: #686158;
+    --gray-600: #4A443D;
+    --gray-700: #2E2924;
+    --gray-800: #1C1917;
+    --gray-900: #0F172A;
   }
 
   body {
-    @apply bg-white text-black min-h-screen antialiased selection:bg-black selection:text-white font-body overflow-x-hidden;
+    @apply bg-[#FAF9F6] text-[#0F172A] min-h-screen antialiased selection:bg-[#0F172A] selection:text-white font-body overflow-x-hidden;
     font-size: clamp(0.875rem, 0.8rem + 0.25vw, 1rem);
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tighter text-black;
+    @apply font-display tracking-tight text-[#0F172A];
   }
 
   h1 { font-size: clamp(2.5rem, 10vw + 0.5rem, 7rem); @apply font-medium leading-[0.95] tracking-tightest; }
@@ -77,7 +77,7 @@
   }
 
   .premium-card {
-    @apply bg-white border border-gray-100 rounded-[2.5rem] overflow-hidden transition-all duration-500;
+    @apply bg-white border border-stone-200/80 rounded-[2.5rem] overflow-hidden transition-all duration-500 shadow-[0_8px_30px_rgb(15,23,42,0.03)];
   }
 }
 

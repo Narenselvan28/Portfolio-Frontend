@@ -22,41 +22,41 @@ const ParticipationModal = ({ item, onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-black/5 backdrop-blur-xl"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-[#0F172A]/70 backdrop-blur-xl"
     >
       <motion.div 
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-gray-100 shadow-2xl rounded-3xl relative"
+        className="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-stone-200/80 shadow-2xl rounded-3xl relative"
       >
         <button 
           onClick={onClose}
-          className="absolute top-8 right-8 z-30 p-2 hover:bg-gray-50 rounded-full transition-colors font-light text-black"
+          className="absolute top-8 right-8 z-30 p-2 hover:bg-stone-50 rounded-full transition-colors font-light text-[#0F172A]"
         >
-          <ChevronRight className="w-5 h-5 text-gray-400 rotate-45" />
+          <ChevronRight className="w-5 h-5 text-stone-400 rotate-45" />
         </button>
 
         <div className="p-8 md:p-16 space-y-12">
           {/* Header */}
           <div className="space-y-6">
-            <span className="text-[10px] tracking-[0.3em] text-gray-300 uppercase font-semibold">{item.organization || 'Technical Competition'}</span>
-            <h2 className="text-4xl md:text-5xl font-medium text-black tracking-tight">{item.title}</h2>
-            <div className="flex flex-wrap items-center gap-6 text-[10px] text-gray-400 uppercase tracking-widest font-medium">
+            <span className="text-[10px] tracking-[0.25em] text-stone-400 uppercase font-semibold">{item.organization || 'Technical Competition'}</span>
+            <h2 className="text-4xl md:text-5xl font-medium text-[#0F172A] tracking-tight">{item.title}</h2>
+            <div className="flex flex-wrap items-center gap-6 text-[10px] text-stone-500 uppercase tracking-wider font-medium">
               <span className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5" /> {item.organization || 'Various'}</span>
               <span className="flex items-center gap-2"><Calendar className="w-3.5 h-3.5" /> {new Date(item.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}</span>
               {item.result && (
-                <span className="bg-black text-white px-2 py-1 text-[8px] font-bold tracking-[0.2em]">{item.result}</span>
+                <span className="bg-[#0F172A] text-white px-2 py-1 text-[8px] font-bold tracking-[0.2em]">{item.result}</span>
               )}
             </div>
           </div>
 
           {/* Takeaway */}
           {item.takeaway && (
-            <div className="bg-gray-50 p-12 rounded-3xl border border-gray-100">
-              <span className="text-[10px] tracking-[0.2em] text-gray-400 uppercase font-semibold block mb-8">Executive Summary</span>
-              <p className="text-gray-600 text-lg leading-relaxed font-light italic">
+            <div className="bg-stone-50 p-12 rounded-3xl border border-stone-200/80">
+              <span className="text-[10px] tracking-[0.2em] text-stone-400 uppercase font-semibold block mb-8">Executive Summary</span>
+              <p className="text-stone-700 text-lg leading-relaxed font-light italic">
                 "{item.takeaway}"
               </p>
             </div>
@@ -181,19 +181,19 @@ const Participations = () => {
           <motion.div 
             key={item._id}
             variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
-            whileHover={{ y: -12 }}
+            whileHover={{ y: -10 }}
             onClick={() => setSelectedItem(item)}
-            className="group cursor-pointer bg-white border border-gray-100 p-0 rounded-[2.5rem] shadow-sm hover:shadow-2xl transition-all duration-500 text-black overflow-hidden flex flex-col"
+            className="group cursor-pointer bg-white border border-stone-200/80 p-0 rounded-[2.5rem] shadow-[0_4px_20px_rgb(15,23,42,0.03)] hover:shadow-2xl transition-all duration-500 text-[#0F172A] overflow-hidden flex flex-col"
           >
             {item.images && item.images[0] && (
-              <div className="h-48 w-full bg-gray-50 border-b border-gray-50 overflow-hidden relative">
+              <div className="h-48 w-full bg-stone-50 border-b border-stone-100 overflow-hidden relative">
                 <img src={item.images[0].replace(/\.pdf$/i, '.jpg')} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/20 to-transparent" />
               </div>
             )}
             <div className="p-10 space-y-8 flex-1">
               <div className="flex justify-between items-start">
-                <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center text-black/20 group-hover:text-black transition-colors overflow-hidden border border-gray-100">
+                <div className="w-12 h-12 bg-stone-50 rounded-2xl flex items-center justify-center text-[#0F172A]/30 group-hover:text-[#0F172A] transition-colors overflow-hidden border border-stone-200/80">
                   {item.images && item.images[0] ? (
                     <img src={item.images[0].replace(/\.pdf$/i, '.jpg')} alt="" className="w-full h-full object-cover" />
                   ) : (
@@ -201,14 +201,14 @@ const Participations = () => {
                   )}
                 </div>
                 {item.result && item.result !== 'None' && (
-                  <span className="text-[10px] font-bold tracking-widest uppercase text-black font-mono">{item.result}</span>
+                  <span className="text-[10px] font-bold tracking-wider uppercase text-[#0F172A] font-mono bg-stone-100 px-3 py-1 rounded-full">{item.result}</span>
                 )}
               </div>
               <div className="space-y-2">
-                <span className="text-[10px] tracking-[0.2em] text-gray-400 uppercase font-mono font-bold">{item.organization || 'TECHNICAL EVENT'}</span>
-                <h3 className="text-xl font-medium text-black leading-tight tracking-tight">{item.title}</h3>
+                <span className="text-[10px] tracking-[0.2em] text-stone-400 uppercase font-mono font-bold">{item.organization || 'TECHNICAL EVENT'}</span>
+                <h3 className="text-xl font-medium text-[#0F172A] leading-tight tracking-tight">{item.title}</h3>
               </div>
-              <div className="flex items-center gap-2 text-[9px] text-gray-400 font-mono font-bold tracking-widest uppercase">
+              <div className="flex items-center gap-2 text-[9px] text-stone-400 font-mono font-bold tracking-wider uppercase">
                 <Calendar className="w-3 h-3" /> {new Date(item.date).getFullYear()}
               </div>
             </div>
@@ -225,10 +225,10 @@ const Participations = () => {
         )}
       </AnimatePresence>
 
-      <div className="mt-24 flex justify-center border-t border-gray-100 pt-16">
+      <div className="mt-24 flex justify-center border-t border-stone-200 pt-16">
         <Link to="/certifications" className="group flex flex-col items-center gap-4 hover:scale-105 transition-transform">
-          <span className="text-[10px] tracking-[0.3em] uppercase font-mono font-bold text-gray-400">Next Folder</span>
-          <span className="text-2xl md:text-4xl font-display font-medium text-black tracking-tight group-hover:underline underline-offset-8">
+          <span className="text-[10px] tracking-[0.25em] uppercase font-mono font-bold text-stone-400">Next Folder</span>
+          <span className="text-2xl md:text-4xl font-display font-medium text-[#0F172A] tracking-tight group-hover:underline underline-offset-8">
             Professional Certifications
           </span>
         </Link>

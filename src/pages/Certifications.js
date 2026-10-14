@@ -21,27 +21,27 @@ const CertificationModal = ({ cert, onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-black/5 backdrop-blur-xl"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-[#0F172A]/70 backdrop-blur-xl"
     >
       <motion.div 
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-gray-100 shadow-2xl rounded-3xl relative"
+        className="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-stone-200/80 shadow-2xl rounded-3xl relative"
       >
         <button 
           onClick={onClose}
-          className="absolute top-8 right-8 z-30 p-2 hover:bg-gray-50 rounded-full transition-colors font-light text-black"
+          className="absolute top-8 right-8 z-30 p-2 hover:bg-stone-50 rounded-full transition-colors font-light text-[#0F172A]"
         >
-          <ChevronRight className="w-5 h-5 text-gray-400 rotate-45" />
+          <ChevronRight className="w-5 h-5 text-stone-400 rotate-45" />
         </button>
 
         <div className="p-8 md:p-16 space-y-12">
           <div className="space-y-6">
-            <span className="text-[10px] tracking-[0.3em] text-gray-300 uppercase font-semibold">{cert.issuer}</span>
-            <h2 className="text-4xl md:text-5xl font-medium text-black tracking-tight leading-[1.1]">{cert.title}</h2>
-            <div className="flex items-center gap-6 text-[10px] text-gray-400 uppercase tracking-widest font-medium">
+            <span className="text-[10px] tracking-[0.25em] text-stone-400 uppercase font-semibold">{cert.issuer}</span>
+            <h2 className="text-4xl md:text-5xl font-medium text-[#0F172A] tracking-tight leading-[1.1]">{cert.title}</h2>
+            <div className="flex items-center gap-6 text-[10px] text-stone-500 uppercase tracking-wider font-medium">
               <span className="flex items-center gap-2"><Calendar className="w-3.5 h-3.5" /> {new Date(cert.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}</span>
               {cert.category && <span>• {cert.category}</span>}
             </div>
@@ -188,19 +188,19 @@ const Certifications = () => {
           <motion.div 
             key={cert._id}
             variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
-            whileHover={{ y: -12 }}
+            whileHover={{ y: -10 }}
             onClick={() => setSelectedCert(cert)}
-            className="group cursor-pointer bg-white border border-gray-100 hover:border-black/10 p-10 rounded-[2.5rem] shadow-sm hover:shadow-2xl relative overflow-hidden text-black"
+            className="group cursor-pointer bg-white border border-stone-200/80 hover:border-stone-300 p-10 rounded-[2.5rem] shadow-[0_4px_20px_rgb(15,23,42,0.03)] hover:shadow-2xl relative overflow-hidden text-[#0F172A] transition-all duration-500"
           >
             <div className="space-y-6">
-              <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center text-black/20 group-hover:text-black transition-colors">
+              <div className="w-12 h-12 bg-stone-50 rounded-2xl flex items-center justify-center text-[#0F172A]/30 group-hover:text-[#0F172A] transition-colors border border-stone-200/60">
                 <Award className="w-6 h-6" />
               </div>
               <div className="space-y-2">
-                <span className="text-[10px] tracking-[0.2em] text-gray-400 uppercase font-mono font-bold">{cert.issuer}</span>
-                <h3 className="text-xl font-medium text-black leading-tight tracking-tight underline-offset-4 group-hover:underline">{cert.title}</h3>
+                <span className="text-[10px] tracking-[0.2em] text-stone-400 uppercase font-mono font-bold">{cert.issuer}</span>
+                <h3 className="text-xl font-medium text-[#0F172A] leading-tight tracking-tight underline-offset-4 group-hover:underline">{cert.title}</h3>
               </div>
-              <div className="flex items-center gap-2 text-[9px] text-gray-400 font-mono font-bold tracking-widest uppercase">
+              <div className="flex items-center gap-2 text-[9px] text-stone-400 font-mono font-bold tracking-wider uppercase">
                 <Calendar className="w-3 h-3" /> {new Date(cert.date).getFullYear()}
               </div>
             </div>

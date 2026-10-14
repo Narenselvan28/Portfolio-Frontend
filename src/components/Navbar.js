@@ -43,14 +43,14 @@ const Navbar = () => {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className={`pointer-events-auto flex items-center justify-between w-full max-w-6xl px-6 md:px-8 py-3 transition-all duration-500 rounded-full border ${
             scrolled 
-              ? 'bg-white/80 backdrop-blur-xl border-gray-100 shadow-sm' 
+              ? 'bg-[#FAF9F6]/85 backdrop-blur-xl border-stone-200/80 shadow-[0_4px_20px_rgb(15,23,42,0.04)]' 
               : 'bg-transparent border-transparent'
           }`}
         >
           {/* Logo */}
           <Link to="/" className="group flex items-center gap-2 z-[110]" onClick={() => setIsMenuOpen(false)}>
-            <div className="w-2 h-2 bg-black rounded-full" />
-            <span className="text-[11px] font-medium tracking-[0.2em] text-black uppercase">
+            <div className="w-2 h-2 bg-[#0F172A] rounded-full" />
+            <span className="text-[11px] font-medium tracking-[0.18em] text-[#0F172A] uppercase">
               Naren Selvan
             </span>
           </Link>
@@ -67,15 +67,15 @@ const Navbar = () => {
                 >
                   <Link 
                     to={link.path} 
-                    className={`relative px-4 py-2 text-[10px] tracking-[0.2em] uppercase transition-colors duration-300 font-mono ${
-                      isActive ? 'text-black font-bold' : 'text-gray-500 hover:text-black font-medium'
+                    className={`relative px-4 py-2 text-[10px] tracking-[0.18em] uppercase transition-colors duration-300 font-mono ${
+                      isActive ? 'text-[#0F172A] font-bold' : 'text-stone-500 hover:text-[#0F172A] font-medium'
                     }`}
                   >
                     <span className="relative z-10">{link.name}</span>
                     {isActive && (
                       <motion.div 
                         layoutId="navbar-underline"
-                        className="absolute bottom-1.5 left-4 right-4 h-px bg-black"
+                        className="absolute bottom-1.5 left-4 right-4 h-px bg-[#0F172A]"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
@@ -94,7 +94,7 @@ const Navbar = () => {
             >
               <a 
                 href="mailto:contact@narenselvan.com"
-                className="px-6 py-2.5 bg-black text-white text-[10px] tracking-[0.2em] uppercase rounded-full font-bold font-mono"
+                className="px-6 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white text-[10px] tracking-[0.18em] uppercase rounded-full font-bold font-mono shadow-md shadow-[#0F172A]/10 transition-colors"
               >
                 Connect
               </a>
@@ -103,7 +103,7 @@ const Navbar = () => {
             {/* Mobile Menu Toggle */}
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden z-[110] p-2 text-black"
+              className="md:hidden z-[110] p-2 text-[#0F172A]"
               aria-label="Toggle Menu"
             >
               {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -120,7 +120,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="fixed inset-0 z-[90] md:hidden bg-white/95 backdrop-blur-2xl flex flex-col justify-center px-10"
+            className="fixed inset-0 z-[90] md:hidden bg-[#FAF9F6]/95 backdrop-blur-2xl flex flex-col justify-center px-10"
           >
             <div className="flex flex-col gap-8">
               {navLinks.map((link, i) => (
@@ -133,8 +133,8 @@ const Navbar = () => {
                   <Link 
                     to={link.path}
                     onClick={() => setIsMenuOpen(false)}
-                    className={`text-4xl font-display font-medium tracking-tighter ${
-                      location.pathname === link.path ? 'text-black' : 'text-gray-400'
+                    className={`text-4xl font-display font-medium tracking-tight ${
+                      location.pathname === link.path ? 'text-[#0F172A]' : 'text-stone-400'
                     }`}
                   >
                     {link.name}
@@ -146,11 +146,11 @@ const Navbar = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
-                className="pt-8 mt-8 border-t border-gray-100"
+                className="pt-8 mt-8 border-t border-stone-200"
               >
                  <a 
                   href="mailto:contact@narenselvan.com"
-                  className="inline-block px-12 py-5 bg-black text-white text-[11px] tracking-[0.3em] uppercase rounded-full font-bold font-mono shadow-xl"
+                  className="inline-block px-12 py-5 bg-[#0F172A] text-white text-[11px] tracking-[0.25em] uppercase rounded-full font-bold font-mono shadow-xl shadow-[#0F172A]/15"
                 >
                   Start Collaboration
                 </a>

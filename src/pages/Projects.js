@@ -6,10 +6,10 @@ import api from '../api';
 
 const Badge = ({ children, variant = 'default' }) => {
   const styles = {
-    default: 'bg-gray-50 text-gray-400',
-    primary: 'bg-black text-white',
-    accent: 'bg-gray-100 text-black',
-    highlight: 'bg-gray-900 text-white'
+    default: 'bg-stone-100 text-stone-600 border border-stone-200/60',
+    primary: 'bg-[#0F172A] text-white',
+    accent: 'bg-stone-100 text-stone-800 border border-stone-200',
+    highlight: 'bg-[#0F172A] text-white'
   };
   return (
     <span className={`text-[9px] tracking-[0.15em] uppercase px-3 py-1.5 rounded-lg font-mono font-bold ${styles[variant]}`}>
@@ -31,11 +31,11 @@ const ProjectCard = ({ project, isFeatured, onClick }) => {
       whileHover={{ y: -8 }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
-      className={`group cursor-pointer bg-white border border-gray-100 hover:border-black/10 flex flex-col transition-all duration-500 shadow-sm hover:shadow-2xl rounded-[1.5rem] md:rounded-[2.5rem] relative z-10 ${
+      className={`group cursor-pointer bg-white border border-stone-200/80 hover:border-stone-300 flex flex-col transition-all duration-500 shadow-[0_4px_20px_rgb(15,23,42,0.03)] hover:shadow-2xl rounded-[1.5rem] md:rounded-[2.5rem] relative z-10 ${
         isFeatured ? 'md:col-span-2' : ''
       }`}
     >
-      <div className={`bg-gray-50 relative overflow-hidden rounded-t-[1.5rem] md:rounded-t-[2.5rem] ${isFeatured ? 'md:aspect-[21/9] aspect-video' : 'aspect-video'}`}>
+      <div className={`bg-stone-50 relative overflow-hidden rounded-t-[1.5rem] md:rounded-t-[2.5rem] ${isFeatured ? 'md:aspect-[21/9] aspect-video' : 'aspect-video'}`}>
         {coverImage ? (
           <img 
             src={coverImage.replace(/\.pdf$/i, '.jpg')} 
@@ -44,7 +44,7 @@ const ProjectCard = ({ project, isFeatured, onClick }) => {
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
-            <Layers className="w-12 h-12 text-gray-100" />
+            <Layers className="w-12 h-12 text-stone-300" />
           </div>
         )}
         <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6">
@@ -62,24 +62,24 @@ const ProjectCard = ({ project, isFeatured, onClick }) => {
         <div className="space-y-1">
           {isFeatured && (
             <div className="flex items-center gap-1.5 mb-1 md:mb-2">
-              <Sparkles className="w-2.5 h-2.5 text-black" />
-              <span className="text-[8px] tracking-[0.3em] uppercase text-black font-bold font-mono">Premium Hub</span>
+              <Sparkles className="w-2.5 h-2.5 text-amber-500" />
+              <span className="text-[8px] tracking-[0.25em] uppercase text-[#0F172A] font-bold font-mono">Premium Hub</span>
             </div>
           )}
-          <h3 className={`font-display font-medium text-black leading-tight tracking-tight ${
+          <h3 className={`font-display font-medium text-[#0F172A] leading-tight tracking-tight ${
             isFeatured ? 'text-2xl md:text-4xl' : 'text-xl'
           }`}>
             {project.title}
           </h3>
         </div>
         
-        <p className="text-gray-500 text-xs md:text-sm leading-relaxed line-clamp-2 md:line-clamp-3">
+        <p className="text-stone-600 text-xs md:text-sm leading-relaxed line-clamp-2 md:line-clamp-3 font-light">
           {project.description}
         </p>
         
         <div className="flex flex-wrap gap-x-4 gap-y-2 pt-2 md:pt-4">
           {project.techStack?.slice(0, 3).map(tech => (
-            <span key={tech} className="text-[9px] text-gray-400 tracking-[0.2em] font-mono lowercase">
+            <span key={tech} className="text-[9px] text-stone-500 tracking-[0.18em] font-mono lowercase">
               {tech}
             </span>
           ))}
@@ -113,7 +113,7 @@ const ProjectModal = ({ project, onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-0 md:p-10 bg-black/50 backdrop-blur-2xl px-4 py-8 md:p-10"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-0 md:p-10 bg-[#0F172A]/70 backdrop-blur-2xl px-4 py-8 md:p-10"
       onClick={onClose}
     >
       <motion.div 
@@ -122,12 +122,12 @@ const ProjectModal = ({ project, onClose }) => {
         exit={{ y: 50, opacity: 0 }}
         transition={{ type: "spring", damping: 25, stiffness: 200 }}
         onClick={(e) => e.stopPropagation()}
-        className="bg-white w-full max-w-6xl max-h-full md:max-h-[90vh] overflow-y-auto border border-gray-100 shadow-2xl rounded-[1.5rem] md:rounded-[3.5rem] relative"
+        className="bg-white w-full max-w-6xl max-h-full md:max-h-[90vh] overflow-y-auto border border-stone-200/80 shadow-2xl rounded-[1.5rem] md:rounded-[3.5rem] relative"
       >
         <div className="sticky top-6 right-6 md:absolute md:top-10 md:right-10 z-[110] flex justify-end px-6 md:px-0">
           <button 
             onClick={onClose}
-            className="p-3 md:p-4 bg-gray-50 hover:bg-black text-gray-400 hover:text-white rounded-full transition-all duration-300 shadow-sm"
+            className="p-3 md:p-4 bg-stone-100 hover:bg-[#0F172A] text-stone-500 hover:text-white rounded-full transition-all duration-300 shadow-sm"
           >
             <X className="w-5 h-5" />
           </button>
@@ -137,25 +137,25 @@ const ProjectModal = ({ project, onClose }) => {
           <div className="space-y-6 md:space-y-8">
             <div className="flex items-center gap-4">
               <Badge variant="highlight">{project.domain}</Badge>
-              <span className="text-[10px] tracking-[0.2em] text-gray-300 uppercase font-mono font-bold">Ref: {project.presentedAt || 'Internal'}</span>
+              <span className="text-[10px] tracking-[0.2em] text-stone-400 uppercase font-mono font-bold">Ref: {project.presentedAt || 'Internal'}</span>
             </div>
-            <h2 className="text-4xl md:text-7xl font-display font-medium text-black leading-tight tracking-tightest">{project.title}</h2>
+            <h2 className="text-4xl md:text-7xl font-display font-medium text-[#0F172A] leading-tight tracking-tight">{project.title}</h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 pt-10 border-t border-gray-50">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 pt-10 border-t border-stone-100">
             <div className="lg:col-span-8 space-y-6 md:space-y-8">
-              <span className="text-[10px] tracking-[0.3em] text-gray-300 uppercase font-mono font-bold block">Overview</span>
-              <p className="text-gray-500 text-lg md:text-xl leading-relaxed font-light">
+              <span className="text-[10px] tracking-[0.25em] text-stone-400 uppercase font-mono font-bold block">Overview</span>
+              <p className="text-stone-600 text-lg md:text-xl leading-relaxed font-light">
                 {project.longDescription || project.description}
               </p>
             </div>
             
             <div className="lg:col-span-4 space-y-10">
               <div className="space-y-4">
-                <span className="text-[10px] tracking-[0.3em] text-gray-300 uppercase font-mono font-bold block">Stack</span>
+                <span className="text-[10px] tracking-[0.25em] text-stone-400 uppercase font-mono font-bold block">Stack</span>
                 <div className="flex flex-wrap gap-2">
                   {project.techStack?.map(tech => (
-                    <span key={tech} className="px-3 py-1.5 border border-gray-50 text-[10px] tracking-widest text-gray-400 font-mono uppercase rounded-lg">
+                    <span key={tech} className="px-3 py-1.5 border border-stone-200 bg-stone-50 text-[10px] tracking-wider text-stone-600 font-mono uppercase rounded-lg">
                       {tech}
                     </span>
                   ))}
@@ -164,13 +164,13 @@ const ProjectModal = ({ project, onClose }) => {
 
               <div className="flex flex-col gap-3">
                 {project.githubLink && (
-                  <a href={project.githubLink} target="_blank" rel="noreferrer" className="flex justify-between items-center p-4 md:p-5 border border-gray-100 hover:border-black rounded-xl transition-all">
+                  <a href={project.githubLink} target="_blank" rel="noreferrer" className="flex justify-between items-center p-4 md:p-5 border border-stone-200 hover:border-[#0F172A] text-[#0F172A] rounded-xl transition-all">
                     <span className="text-[10px] font-mono font-bold uppercase tracking-widest">Source</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </a>
                 )}
                 {project.liveLink && (
-                  <a href={project.liveLink} target="_blank" rel="noreferrer" className="flex justify-between items-center p-4 md:p-5 bg-black text-white rounded-xl shadow-xl">
+                  <a href={project.liveLink} target="_blank" rel="noreferrer" className="flex justify-between items-center p-4 md:p-5 bg-[#0F172A] hover:bg-[#1E293B] text-white rounded-xl shadow-xl transition-colors">
                     <span className="text-[10px] font-mono font-bold uppercase tracking-widest">Live Link</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </a>
@@ -182,16 +182,16 @@ const ProjectModal = ({ project, onClose }) => {
           {sections.map(section => (
             <div key={section.title} className="space-y-8 md:space-y-12">
               <div className="flex items-center gap-4">
-                <span className="text-[10px] md:text-[12px] tracking-[0.4em] text-black uppercase font-mono font-bold">{section.title}</span>
-                <div className="h-px flex-1 bg-gray-50" />
+                <span className="text-[10px] md:text-[12px] tracking-[0.3em] text-[#0F172A] uppercase font-mono font-bold">{section.title}</span>
+                <div className="h-px flex-1 bg-stone-200" />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
                 {section.data.map((img, idx) => (
-                  <div key={idx} className="aspect-video bg-gray-50 rounded-2xl md:rounded-3xl overflow-hidden border border-gray-50 relative group">
+                  <div key={idx} className="aspect-video bg-stone-50 rounded-2xl md:rounded-3xl overflow-hidden border border-stone-200/80 relative group">
                     <a href={img} target="_blank" rel="noreferrer" className="block w-full h-full relative cursor-zoom-in">
                       <img src={img.replace(/\.pdf$/i, '.jpg')} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center pointer-events-none">
-                        <span className="opacity-0 group-hover:opacity-100 bg-white/90 text-black px-4 py-2 rounded-xl text-[10px] uppercase font-bold tracking-widest shadow-xl">
+                      <div className="absolute inset-0 bg-[#0F172A]/0 group-hover:bg-[#0F172A]/10 transition-colors flex items-center justify-center pointer-events-none">
+                        <span className="opacity-0 group-hover:opacity-100 bg-white/95 text-[#0F172A] px-4 py-2 rounded-xl text-[10px] uppercase font-bold tracking-widest shadow-xl">
                           CLICK TO VIEW FULL
                         </span>
                       </div>
@@ -203,8 +203,8 @@ const ProjectModal = ({ project, onClose }) => {
           ))}
 
           {project.outcome && (
-            <div className="bg-gray-50 p-8 md:p-16 rounded-[1.5rem] md:rounded-[3rem] border border-gray-100">
-              <p className="text-black text-xl md:text-2xl font-display leading-relaxed italic">
+            <div className="bg-stone-50 p-8 md:p-16 rounded-[1.5rem] md:rounded-[3rem] border border-stone-200/80">
+              <p className="text-[#0F172A] text-xl md:text-2xl font-display leading-relaxed italic">
                 "{project.outcome}"
               </p>
             </div>
@@ -283,7 +283,7 @@ const Projects = () => {
           </div>
 
           {/* Hero banner */}
-          <div className="relative overflow-hidden rounded-[2rem] md:rounded-[3rem] bg-black min-h-[320px] md:min-h-[440px] flex flex-col justify-between p-8 md:p-16">
+          <div className="relative overflow-hidden rounded-[2rem] md:rounded-[3rem] bg-gradient-to-br from-[#070D1B] via-[#0F172A] to-[#1E293B] border border-amber-500/20 min-h-[320px] md:min-h-[440px] flex flex-col justify-between p-8 md:p-16 shadow-2xl">
 
             {/* Animated background grid */}
             <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)', backgroundSize: '48px 48px' }} />
@@ -303,20 +303,20 @@ const Projects = () => {
             {/* Top row */}
             <div className="relative flex items-start justify-between flex-wrap gap-4">
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2 bg-amber-500/20 border border-amber-500/30 text-amber-400 px-4 py-2 rounded-full">
+                <div className="flex items-center gap-2 bg-amber-500/20 border border-amber-500/30 text-amber-300 px-4 py-2 rounded-full">
                   <Building2 className="w-3.5 h-3.5" />
-                  <span className="text-[9px] tracking-[0.2em] uppercase font-mono font-bold">ReArm Technologies</span>
+                  <span className="text-[9px] tracking-[0.18em] uppercase font-mono font-bold">ReArm Technologies</span>
                 </div>
-                <div className="flex items-center gap-2 bg-white/5 border border-white/10 text-white/50 px-4 py-2 rounded-full">
-                  <Rocket className="w-3 h-3" />
-                  <span className="text-[9px] tracking-[0.2em] uppercase font-mono font-bold">Startup Initiative</span>
+                <div className="flex items-center gap-2 bg-white/5 border border-white/10 text-white/60 px-4 py-2 rounded-full">
+                  <Rocket className="w-3 h-3 text-amber-400" />
+                  <span className="text-[9px] tracking-[0.18em] uppercase font-mono font-bold">Startup Initiative</span>
                 </div>
               </div>
               <motion.div
                 whileHover={{ x: 4 }}
-                className="flex items-center gap-2 text-white/30 group-hover:text-white/70 transition-colors duration-300"
+                className="flex items-center gap-2 text-white/40 group-hover:text-white/80 transition-colors duration-300"
               >
-                <span className="text-[9px] tracking-[0.2em] uppercase font-mono font-bold">Explore</span>
+                <span className="text-[9px] tracking-[0.18em] uppercase font-mono font-bold">Explore</span>
                 <ChevronRight className="w-4 h-4" />
               </motion.div>
             </div>
@@ -324,18 +324,18 @@ const Projects = () => {
             {/* Main content */}
             <div className="relative mt-8 md:mt-0 space-y-5 md:space-y-6 max-w-3xl">
               <div>
-                <p className="text-white/30 text-[10px] tracking-[0.3em] uppercase font-mono font-bold mb-3">Assistive Robotics · Neural Interfaces · Edge AI</p>
+                <p className="text-amber-400/80 text-[10px] tracking-[0.25em] uppercase font-mono font-bold mb-3">Assistive Robotics · Neural Interfaces · Edge AI</p>
                 <h2 className="text-3xl md:text-6xl font-display font-medium text-white leading-tight tracking-tight">
                   ReArm One
                 </h2>
-                <p className="text-white/40 text-sm md:text-base mt-1 font-light tracking-wide">AI-Powered Modular Occupational Prosthetic</p>
+                <p className="text-white/60 text-sm md:text-base mt-1 font-light tracking-wide">AI-Powered Modular Occupational Prosthetic</p>
               </div>
-              <p className="text-white/50 text-sm md:text-base leading-relaxed max-w-2xl">
+              <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-2xl font-light">
                 Hybrid EEG–sEMG control architecture for task-specific modular prosthetic attachments — combining neural-intent recognition with muscle-activity signals for rehabilitation and industrial use.
               </p>
               <div className="flex flex-wrap gap-2 pt-2">
                 {rearmProject.techStack?.slice(0, 5).map(tech => (
-                  <span key={tech} className="px-3 py-1.5 border border-white/10 text-white/30 text-[9px] tracking-widest font-mono uppercase rounded-lg bg-white/5">
+                  <span key={tech} className="px-3 py-1.5 border border-white/10 text-white/50 text-[9px] tracking-wider font-mono uppercase rounded-lg bg-white/5">
                     {tech}
                   </span>
                 ))}
@@ -346,9 +346,9 @@ const Projects = () => {
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               whileHover={{ opacity: 1, y: 0 }}
-              className="absolute bottom-8 right-8 md:bottom-12 md:right-16 flex items-center gap-3 bg-white text-black px-6 py-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-2xl"
+              className="absolute bottom-8 right-8 md:bottom-12 md:right-16 flex items-center gap-3 bg-white text-[#0F172A] px-6 py-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-2xl"
             >
-              <span className="text-[10px] tracking-[0.2em] uppercase font-mono font-bold">View Project</span>
+              <span className="text-[10px] tracking-[0.18em] uppercase font-mono font-bold">View Project</span>
               <ArrowUpRight className="w-4 h-4" />
             </motion.div>
           </div>
@@ -358,7 +358,7 @@ const Projects = () => {
       {/* Sort tabs */}
       <div className="flex items-center justify-center md:justify-start gap-4 mb-12 md:mb-20">
         {['featured', 'latest'].map(mode => (
-          <button key={mode} onClick={() => setSortMode(mode)} className={`px-6 md:px-8 py-2 md:py-3 text-[10px] tracking-[0.3em] uppercase font-mono font-bold transition-all border-b-2 ${sortMode === mode ? 'border-black text-black' : 'border-transparent text-gray-300'}`}>
+          <button key={mode} onClick={() => setSortMode(mode)} className={`px-6 md:px-8 py-2 md:py-3 text-[10px] tracking-[0.2em] uppercase font-mono font-bold transition-all border-b-2 ${sortMode === mode ? 'border-[#0F172A] text-[#0F172A]' : 'border-transparent text-stone-400 hover:text-[#0F172A]'}`}>
             {mode}
           </button>
         ))}
@@ -381,10 +381,10 @@ const Projects = () => {
         {selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
       </AnimatePresence>
 
-      <div className="mt-24 flex justify-center border-t border-gray-100 pt-16">
+      <div className="mt-24 flex justify-center border-t border-stone-200 pt-16">
         <Link to="/certifications" className="group flex flex-col items-center gap-4 hover:scale-105 transition-transform">
-          <span className="text-[10px] tracking-[0.3em] uppercase font-mono font-bold text-gray-400">Next Folder</span>
-          <span className="text-2xl md:text-4xl font-display font-medium text-black tracking-tight group-hover:underline underline-offset-8">
+          <span className="text-[10px] tracking-[0.25em] uppercase font-mono font-bold text-stone-400">Next Folder</span>
+          <span className="text-2xl md:text-4xl font-display font-medium text-[#0F172A] tracking-tight group-hover:underline underline-offset-8">
             Professional Certifications
           </span>
         </Link>

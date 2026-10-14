@@ -11,42 +11,42 @@ const EventModal = ({ event, onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-black/5 backdrop-blur-xl"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-[#0F172A]/70 backdrop-blur-xl"
     >
       <motion.div 
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-gray-100 shadow-2xl rounded-3xl relative"
+        className="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-stone-200/80 shadow-2xl rounded-3xl relative"
       >
         <button 
           onClick={onClose}
-          className="absolute top-8 right-8 z-30 p-2 hover:bg-gray-50 rounded-full transition-colors font-light text-black"
+          className="absolute top-8 right-8 z-30 p-2 hover:bg-stone-50 rounded-full transition-colors font-light text-[#0F172A]"
         >
-          <Clock className="w-5 h-5 text-gray-400 rotate-45" />
+          <Clock className="w-5 h-5 text-stone-400 rotate-45" />
         </button>
 
         <div className="p-8 md:p-16 space-y-12">
           <div className="space-y-6">
-            <span className="text-[10px] tracking-[0.3em] text-gray-300 uppercase font-semibold">{event.role || 'Organization Lead'}</span>
-            <h2 className="text-4xl md:text-5xl font-medium text-black tracking-tight">{event.title}</h2>
-            <div className="flex flex-wrap items-center gap-6 text-[10px] text-gray-400 uppercase tracking-widest font-medium">
+            <span className="text-[10px] tracking-[0.25em] text-stone-400 uppercase font-semibold">{event.role || 'Organization Lead'}</span>
+            <h2 className="text-4xl md:text-5xl font-medium text-[#0F172A] tracking-tight">{event.title}</h2>
+            <div className="flex flex-wrap items-center gap-6 text-[10px] text-stone-500 uppercase tracking-wider font-medium">
               <span className="flex items-center gap-2"><Calendar className="w-3.5 h-3.5" /> {new Date(event.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}</span>
-              {event.participantCount && <span className="flex items-center gap-2 font-black">• {event.participantCount}+ impacted</span>}
+              {event.participantCount && <span className="flex items-center gap-2 font-bold">• {event.participantCount}+ impacted</span>}
             </div>
           </div>
 
-          <div className="space-y-6 pt-12 border-t border-gray-50">
-            <span className="text-[10px] tracking-[0.2em] text-gray-400 uppercase font-semibold">Leadership Scope</span>
-            <p className="text-gray-500 text-xl leading-relaxed font-light">
+          <div className="space-y-6 pt-12 border-t border-stone-100">
+            <span className="text-[10px] tracking-[0.2em] text-stone-400 uppercase font-semibold">Leadership Scope</span>
+            <p className="text-stone-600 text-xl leading-relaxed font-light">
               {event.description}
             </p>
           </div>
 
           {event.insights && (
-            <div className="bg-black p-12 rounded-3xl">
-              <span className="text-[10px] tracking-[0.2em] text-white/40 uppercase font-semibold block mb-8">Executive Insight</span>
+            <div className="bg-gradient-to-br from-[#070D1B] to-[#0F172A] p-12 rounded-3xl border border-amber-500/20">
+              <span className="text-[10px] tracking-[0.25em] text-amber-400 uppercase font-semibold block mb-8">Executive Insight</span>
               <p className="text-white text-lg leading-relaxed font-light italic">
                 "{event.insights}"
               </p>
@@ -78,17 +78,17 @@ const Leadership = () => {
   }, []);
 
   if (loading) return (
-    <div className="flex flex-col justify-center items-center h-[70vh] gap-6 text-black">
+    <div className="flex flex-col justify-center items-center h-[70vh] gap-6 text-[#0F172A]">
       <motion.div 
         animate={{ rotate: 360 }}
         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-        className="w-10 h-10 border-2 border-gray-100 border-t-black rounded-full"
+        className="w-10 h-10 border-2 border-stone-200 border-t-[#0F172A] rounded-full"
       />
       <motion.span 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className="text-[10px] tracking-[0.3em] uppercase font-mono font-bold"
+        className="text-[10px] tracking-[0.25em] uppercase font-mono font-bold"
       >
         Synchronizing Visionary Nodes
       </motion.span>
@@ -106,10 +106,10 @@ const Leadership = () => {
       <div className="mb-24">
         <div className="space-y-8">
           <div className="flex items-center gap-4">
-            <span className="w-1.5 h-1.5 bg-black rounded-full"></span>
-            <span className="text-[11px] tracking-[0.4em] uppercase text-gray-300 font-mono font-bold">Organizational Impact</span>
+            <span className="w-1.5 h-1.5 bg-[#0F172A] rounded-full"></span>
+            <span className="text-[11px] tracking-[0.3em] uppercase text-stone-400 font-mono font-bold">Organizational Impact</span>
           </div>
-          <h1 className="text-7xl md:text-8xl font-display font-medium text-black leading-[0.9] tracking-tightest">
+          <h1 className="text-7xl md:text-8xl font-display font-medium text-[#0F172A] leading-[0.9] tracking-tightest">
             Vision &
             <br />
             <span className="italic font-light">leadership.</span>
@@ -118,7 +118,7 @@ const Leadership = () => {
       </div>
 
       <div className="relative">
-        <div className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-gray-50 -translate-x-1/2" />
+        <div className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-stone-200 -translate-x-1/2" />
 
         {events.map((event, idx) => (
           <motion.div 
@@ -131,23 +131,23 @@ const Leadership = () => {
               idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
             }`}
           >
-            <div className="absolute left-5 md:left-1/2 w-4 h-4 rounded-full bg-black -translate-x-1/2 mt-5 z-10 border-4 border-white shadow-sm" />
+            <div className="absolute left-5 md:left-1/2 w-4 h-4 rounded-full bg-[#0F172A] -translate-x-1/2 mt-5 z-10 border-4 border-[#FAF9F6] shadow-sm" />
 
             <div className={`w-full md:w-[calc(50%-4rem)] ${idx % 2 === 0 ? 'md:pr-8 text-left md:text-right' : 'md:pl-8 text-left md:ml-auto'}`}>
               <div className="pl-12 md:pl-0 space-y-4">
-                <span className="text-[11px] tracking-[0.4em] text-gray-400 uppercase font-mono font-bold">
+                <span className="text-[11px] tracking-[0.3em] text-stone-400 uppercase font-mono font-bold">
                   {new Date(event.date).getFullYear()}
                 </span>
                 
                 <motion.div 
                   onClick={() => setSelectedEvent(event)}
-                  whileHover={{ y: -12 }}
-                  className="group cursor-pointer bg-white border border-gray-100 p-10 rounded-[2.5rem] shadow-sm hover:shadow-2xl transition-all duration-500"
+                  whileHover={{ y: -8 }}
+                  className="group cursor-pointer bg-white border border-stone-200/80 p-10 rounded-[2.5rem] shadow-[0_4px_20px_rgb(15,23,42,0.03)] hover:shadow-2xl transition-all duration-500"
                 >
                   <div className="space-y-6">
-                    <span className="text-[10px] tracking-[0.2em] text-gray-400 uppercase font-mono font-bold">{event.role}</span>
-                    <h3 className="text-3xl font-display font-medium text-black tracking-tight leading-tight">{event.title}</h3>
-                    <div className={`flex items-center gap-2 text-[10px] text-gray-400 font-mono font-bold ${idx % 2 === 0 ? 'md:justify-end' : ''}`}>
+                    <span className="text-[10px] tracking-[0.2em] text-stone-400 uppercase font-mono font-bold">{event.role}</span>
+                    <h3 className="text-3xl font-display font-medium text-[#0F172A] tracking-tight leading-tight">{event.title}</h3>
+                    <div className={`flex items-center gap-2 text-[10px] text-stone-500 font-mono font-bold ${idx % 2 === 0 ? 'md:justify-end' : ''}`}>
                       <Users className="w-4 h-4" /> <span>{event.participantCount || 0}+ impacted</span>
                     </div>
                   </div>

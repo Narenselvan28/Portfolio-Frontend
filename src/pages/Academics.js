@@ -21,28 +21,28 @@ const AcademicModal = ({ academic, onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-black/5 backdrop-blur-xl"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-[#0F172A]/70 backdrop-blur-xl"
     >
       <motion.div 
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-gray-100 shadow-2xl rounded-3xl relative"
+        className="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-stone-200/80 shadow-2xl rounded-3xl relative"
       >
         <button 
           onClick={onClose}
-          className="absolute top-8 right-8 z-30 p-2 hover:bg-gray-50 rounded-full transition-colors font-light text-black"
+          className="absolute top-8 right-8 z-30 p-2 hover:bg-stone-50 rounded-full transition-colors font-light text-[#0F172A]"
         >
-          <ChevronRight className="w-5 h-5 text-gray-400 rotate-45" />
+          <ChevronRight className="w-5 h-5 text-stone-400 rotate-45" />
         </button>
 
         <div className="p-8 md:p-16 space-y-12">
           {/* Header */}
           <div className="space-y-6">
-            <span className="text-[10px] tracking-[0.3em] text-gray-300 uppercase font-semibold">{academic.institution}</span>
-            <h2 className="text-4xl md:text-5xl font-medium text-black tracking-tight leading-[1.1]">{academic.degree}</h2>
-            <div className="flex flex-wrap items-center gap-6 text-[10px] text-gray-400 uppercase tracking-widest font-medium">
+            <span className="text-[10px] tracking-[0.25em] text-stone-400 uppercase font-semibold">{academic.institution}</span>
+            <h2 className="text-4xl md:text-5xl font-medium text-[#0F172A] tracking-tight leading-[1.1]">{academic.degree}</h2>
+            <div className="flex flex-wrap items-center gap-6 text-[10px] text-stone-500 uppercase tracking-wider font-medium">
               <span className="flex items-center gap-2"><Book className="w-3.5 h-3.5" /> Class of {academic.endYear}</span>
               {academic.grade && <span className="flex items-center gap-2">• Grade Index: {academic.grade}</span>}
             </div>
@@ -172,25 +172,25 @@ const Academics = () => {
           <motion.div 
             key={item._id}
             variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
-            whileHover={{ y: -10, backgroundColor: "rgba(0,0,0,0.01)" }}
+            whileHover={{ y: -8 }}
             onClick={() => setSelectedAcademic(item)}
-            className="group cursor-pointer bg-white border border-gray-100 p-10 md:p-16 transition-all duration-500 rounded-[3rem] shadow-sm hover:shadow-2xl relative overflow-hidden text-black"
+            className="group cursor-pointer bg-white border border-stone-200/80 p-10 md:p-16 transition-all duration-500 rounded-[3rem] shadow-[0_4px_20px_rgb(15,23,42,0.03)] hover:shadow-2xl relative overflow-hidden text-[#0F172A]"
           >
             <div className="flex flex-col md:flex-row md:items-center gap-12 md:gap-20">
               <div className="flex flex-row md:flex-col gap-8 md:gap-6 md:w-32 shrink-0">
-                <span className="text-[12px] tracking-[0.4em] text-gray-500 uppercase font-mono font-bold">{item.endYear}</span>
+                <span className="text-[12px] tracking-[0.3em] text-stone-400 uppercase font-mono font-bold">{item.endYear}</span>
                 {item.grade && (
-                  <span className="text-[11px] tracking-[0.2em] text-black font-bold font-mono bg-gray-50 border border-gray-100 px-4 py-2.5 rounded-xl inline-block text-center">{item.grade}</span>
+                  <span className="text-[11px] tracking-[0.18em] text-[#0F172A] font-bold font-mono bg-stone-100 border border-stone-200 px-4 py-2 rounded-xl inline-block text-center">{item.grade}</span>
                 )}
               </div>
               <div className="flex-1 space-y-6">
-                <h3 className="text-4xl md:text-5xl font-display font-medium text-black leading-tight tracking-tight">{item.degree}</h3>
-                <div className="flex items-center gap-3 text-[11px] text-gray-500 uppercase tracking-[0.2em] font-mono font-bold">
-                  <GraduationCap className="w-4.5 h-4.5 text-black/40" />
+                <h3 className="text-4xl md:text-5xl font-display font-medium text-[#0F172A] leading-tight tracking-tight">{item.degree}</h3>
+                <div className="flex items-center gap-3 text-[11px] text-stone-500 uppercase tracking-[0.18em] font-mono font-bold">
+                  <GraduationCap className="w-4.5 h-4.5 text-[#0F172A]/40" />
                   <span>{item.institution}</span>
                 </div>
               </div>
-              <div className="hidden md:block text-gray-100 group-hover:text-black group-hover:translate-x-4 transition-all duration-700">
+              <div className="hidden md:block text-stone-300 group-hover:text-[#0F172A] group-hover:translate-x-3 transition-all duration-500">
                 <ChevronRight className="w-10 h-10 font-thin" />
               </div>
             </div>
